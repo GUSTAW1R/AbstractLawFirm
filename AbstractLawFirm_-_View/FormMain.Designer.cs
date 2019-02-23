@@ -177,26 +177,26 @@
             // 
             // clientIdDataGridViewTextBoxColumn
             // 
-            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "ClientId";
-            this.clientIdDataGridViewTextBoxColumn.HeaderText = "ClientId";
+            this.clientIdDataGridViewTextBoxColumn.DataPropertyName = "CustomerId";
+            this.clientIdDataGridViewTextBoxColumn.HeaderText = "CustomerId";
             this.clientIdDataGridViewTextBoxColumn.Name = "clientIdDataGridViewTextBoxColumn";
             // 
             // clientFIODataGridViewTextBoxColumn
             // 
-            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "ClientFIO";
-            this.clientFIODataGridViewTextBoxColumn.HeaderText = "ClientFIO";
+            this.clientFIODataGridViewTextBoxColumn.DataPropertyName = "CustomerFIO";
+            this.clientFIODataGridViewTextBoxColumn.HeaderText = "CustomerFIO";
             this.clientFIODataGridViewTextBoxColumn.Name = "clientFIODataGridViewTextBoxColumn";
             // 
             // productIdDataGridViewTextBoxColumn
             // 
-            this.productIdDataGridViewTextBoxColumn.DataPropertyName = "ProductId";
-            this.productIdDataGridViewTextBoxColumn.HeaderText = "ProductId";
+            this.productIdDataGridViewTextBoxColumn.DataPropertyName = "DocumentsId";
+            this.productIdDataGridViewTextBoxColumn.HeaderText = "DocumentsId";
             this.productIdDataGridViewTextBoxColumn.Name = "productIdDataGridViewTextBoxColumn";
             // 
             // productNameDataGridViewTextBoxColumn
             // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
+            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "DocumentsName";
+            this.productNameDataGridViewTextBoxColumn.HeaderText = "DocumentsName";
             this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
             // 
             // countDataGridViewTextBoxColumn

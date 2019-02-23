@@ -26,7 +26,7 @@ namespace AbstractLawFirm___View
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<IClientService, ClientServiceList>(new
+            currentContainer.RegisterType<ICustomerService, CustomerServiceList>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IBlankService, BlankServiceList>(new
            HierarchicalLifetimeManager());

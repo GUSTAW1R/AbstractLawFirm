@@ -9,6 +9,6 @@ namespace AbstractLawFirm___ServiceDAL.ViewModel
     public class BlankViewModel
     {
         public int Id { get; set; }
-        public string ComponentName { get; set; }
+        public string BlankNme { get; set; }
     }
 }

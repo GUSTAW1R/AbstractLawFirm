@@ -9,6 +9,6 @@ namespace AbstractLawFirm
     public class Blank //Component
     {
         public int Id { get; set; }
-        public string ComponentName { get; set; }
+        public string BlankName { get; set; }
     }
 }

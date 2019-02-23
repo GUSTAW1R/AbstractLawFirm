@@ -41,10 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataListSingleton.cs" />
     <Compile Include="Implementations\BlankServiceList.cs" />
-    <Compile Include="Implementations\ClientServiceList.cs" />
+    <Compile Include="Implementations\CustomerServiceList.cs" />
     <Compile Include="Implementations\MainServiceList.cs" />
     <Compile Include="Implementations\ProductServiceList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

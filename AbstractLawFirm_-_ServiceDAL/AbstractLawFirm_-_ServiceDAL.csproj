@@ -42,20 +42,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BindingModel\BlankBindingModel.cs" />
-    <Compile Include="BindingModel\ClientBindingModel.cs" />
-    <Compile Include="BindingModel\DocumentsComponentBindingModel.cs" />
+    <Compile Include="BindingModel\CustomerBindingModel.cs" />
+    <Compile Include="BindingModel\DocumentBlankBindingModel.cs" />
     <Compile Include="BindingModel\OrderBindingModel.cs" />
     <Compile Include="BindingModel\DocumentsBindingModel.cs" />
     <Compile Include="BindingModel\OrderStatucBindingModel.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Interfaces\IBlankService.cs" />
-    <Compile Include="Interfaces\IClientService.cs" />
+    <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IDocumentsService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\BlankViewModel.cs" />
-    <Compile Include="ViewModel\ClientViewModel.cs" />
-    <Compile Include="ViewModel\DocumentsComponentViewModel.cs" />
+    <Compile Include="ViewModel\CustomerViewModel.cs" />
+    <Compile Include="ViewModel\DocumentBlankViewModel.cs" />
     <Compile Include="ViewModel\DocumentsViewModel.cs" />
     <Compile Include="ViewModel\OrderStatusViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />

@@ -19,10 +19,10 @@ namespace AbstractLawFirm___View
         [Dependency]
         public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IClientService service;
+        private readonly ICustomerService service;
         private int? id;
 
-        public FormClient(IClientService service)
+        public FormClient(ICustomerService service)
         {
             InitializeComponent();
             this.service = service;
@@ -34,7 +34,7 @@ namespace AbstractLawFirm___View
             {
                 try
                 {
-                    ClientViewModel view = service.GetElement(id.Value);
+                    CustomerViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
                         textBoxFIO.Text = view.ClientFIO;
@@ -57,17 +57,17 @@ namespace AbstractLawFirm___View
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new ClientBindingModel
+                    service.UpdElement(new CustomerBindingModel
                     {
                         Id = id.Value,
-                        ClientFIO = textBoxFIO.Text
+                        CustomerFIO = textBoxFIO.Text
                     });
                 }
                 else
                 {
-                    service.AddElement(new ClientBindingModel
+                    service.AddElement(new CustomerBindingModel
                     {
-                        ClientFIO = textBoxFIO.Text
+                        CustomerFIO = textBoxFIO.Text
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -8,12 +8,12 @@ using AbstractLawFirm___ServiceDAL.ViewModel;
 
 namespace AbstractLawFirm___ServiceDAL.Interfaces
 {
-    public interface IClientService
+    public interface ICustomerService
     {
-        List<ClientViewModel> GetList();
-        ClientViewModel GetElement(int id);
-        void AddElement(ClientBindingModel model);
-        void UpdElement(ClientBindingModel model);
+        List<CustomerViewModel> GetList();
+        CustomerViewModel GetElement(int id);
+        void AddElement(CustomerBindingModel model);
+        void UpdElement(CustomerBindingModel model);
         void DelElement(int id);
     }
 }

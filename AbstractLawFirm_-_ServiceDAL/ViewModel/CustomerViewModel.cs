@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AbstractLawFirm___ServiceDAL.ViewModel
 {
-    public class ClientViewModel
+    public class CustomerViewModel
     {
         public int Id { get; set; }
         public string ClientFIO { get; set; }

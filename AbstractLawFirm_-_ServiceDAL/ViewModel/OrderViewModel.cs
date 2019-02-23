@@ -9,8 +9,8 @@ namespace AbstractLawFirm___ServiceDAL.ViewModel
     public class OrderViewModel
     {
         public int Id { get; set; }
-        public int ClientId { get; set; }
-        public string ClientFIO { get; set; }
+        public int CustomerId { get; set; }
+        public string CustomerFIO { get; set; }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int Count { get; set; }

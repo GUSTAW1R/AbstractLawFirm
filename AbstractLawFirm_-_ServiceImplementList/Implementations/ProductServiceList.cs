@@ -23,27 +23,27 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             for (int i = 0; i < source.Documents.Count; ++i)
             {
 
-            List<DocumentsComponentViewModel> documentsComponent = new List<DocumentsComponentViewModel>();
+            List<DocumentBlankViewModel> documentBlank = new List<DocumentBlankViewModel>();
                 for (int j = 0; j < source.DocumentsComponent.Count; ++j)
                 {
-                    if (source.DocumentsComponent[j].ProductId == source.Documents[i].Id)
+                    if (source.DocumentsComponent[j].DocumentsId == source.Documents[i].Id)
                     {
                         string componentName = string.Empty;
                         for (int k = 0; k < source.Blank.Count; ++k)
                         {
-                            if (source.DocumentsComponent[j].ComponentId ==
+                            if (source.DocumentsComponent[j].BlankId ==
                            source.Blank[k].Id)
                             {
-                                componentName = source.Blank[k].ComponentName;
+                                componentName = source.Blank[k].BlankName;
                                 break;
                             }
                         }
-                        documentsComponent.Add(new DocumentsComponentViewModel
+                        documentBlank.Add(new DocumentBlankViewModel
                         {
                             Id = source.DocumentsComponent[j].Id,
-                        ProductId = source.DocumentsComponent[j].ProductId,
-                            ComponentId = source.DocumentsComponent[j].ComponentId,
-                            ComponentName = componentName,
+                        DocumentsId = source.DocumentsComponent[j].DocumentsId,
+                            BlankId = source.DocumentsComponent[j].BlankId,
+                            BlankName = componentName,
                             Count = source.DocumentsComponent[j].Count
                         });
                     }
@@ -51,9 +51,9 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 result.Add(new DocumentsViewModel
                 {
                     Id = source.Documents[i].Id,
-                    ProductName = source.Documents[i].ProductName,
+                    DocumentsName = source.Documents[i].DocumentsName,
                     Price = source.Documents[i].Price,
-                    DocumentsComponent = documentsComponent
+                    DocumentBlank = documentBlank
                 });
             }
             return result;
@@ -63,27 +63,27 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             for (int i = 0; i < source.Documents.Count; ++i)
             {
 
-            List<DocumentsComponentViewModel> documentsComponent = new List<DocumentsComponentViewModel>();
+            List<DocumentBlankViewModel> documentBlank = new List<DocumentBlankViewModel>();
                 for (int j = 0; j < source.DocumentsComponent.Count; ++j)
                 {
-                    if (source.DocumentsComponent[j].ProductId == source.Documents[i].Id)
+                    if (source.DocumentsComponent[j].DocumentsId == source.Documents[i].Id)
                     {
                         string componentName = string.Empty;
                         for (int k = 0; k < source.Blank.Count; ++k)
                         {
-                            if (source.DocumentsComponent[j].ComponentId ==
+                            if (source.DocumentsComponent[j].BlankId ==
                            source.Blank[k].Id)
                             {
-                                componentName = source.Blank[k].ComponentName;
+                                componentName = source.Blank[k].BlankName;
                                 break;
                             }
                         }
-                        documentsComponent.Add(new DocumentsComponentViewModel
+                        documentBlank.Add(new DocumentBlankViewModel
                         {
                             Id = source.DocumentsComponent[j].Id,
-                            ProductId = source.DocumentsComponent[j].ProductId,
-                            ComponentId = source.DocumentsComponent[j].ComponentId,
-                            ComponentName = componentName,
+                            DocumentsId = source.DocumentsComponent[j].DocumentsId,
+                            BlankId = source.DocumentsComponent[j].BlankId,
+                            BlankName = componentName,
                             Count = source.DocumentsComponent[j].Count
                         });
                     }
@@ -93,9 +93,9 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                     return new DocumentsViewModel
                     {
                         Id = source.Documents[i].Id,
-                        ProductName = source.Documents[i].ProductName,
+                        DocumentsName = source.Documents[i].DocumentsName,
                         Price = source.Documents[i].Price,
-                        DocumentsComponent = documentsComponent
+                        DocumentBlank = documentBlank
                     };
                 }
             }
@@ -111,7 +111,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 {
                     maxId = source.Documents[i].Id;
                 }
-                if (source.Documents[i].ProductName == model.ProductName)
+                if (source.Documents[i].DocumentsName == model.DocumentsName)
                 {
                     throw new Exception("Уже есть изделие с таким названием");
                 }
@@ -119,7 +119,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             source.Documents.Add(new Documents
             {
                 Id = maxId + 1,
-                ProductName = model.ProductName,
+                DocumentsName = model.DocumentsName,
                 Price = model.Price
             });
             // компоненты для изделия
@@ -132,28 +132,28 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 }
             }
             // убираем дубли по компонентам
-            for (int i = 0; i < model.DocumentsComponent.Count; ++i)
+            for (int i = 0; i < model.DocumentBlank.Count; ++i)
             {
-                for (int j = 1; j < model.DocumentsComponent.Count; ++j)
+                for (int j = 1; j < model.DocumentBlank.Count; ++j)
                 {
-                    if (model.DocumentsComponent[i].ComponentId ==
-                    model.DocumentsComponent[j].ComponentId)
+                    if (model.DocumentBlank[i].BlankId ==
+                    model.DocumentBlank[j].BlankId)
                     {
-                        model.DocumentsComponent[i].Count +=
-                        model.DocumentsComponent[j].Count;
-                        model.DocumentsComponent.RemoveAt(j--);
+                        model.DocumentBlank[i].Count +=
+                        model.DocumentBlank[j].Count;
+                        model.DocumentBlank.RemoveAt(j--);
                     }
                 }
             }
             // добавляем компоненты
-            for (int i = 0; i < model.DocumentsComponent.Count; ++i)
+            for (int i = 0; i < model.DocumentBlank.Count; ++i)
             {
-                source.DocumentsComponent.Add(new DocumentsComponent
+                source.DocumentsComponent.Add(new DocumentBlank
                 {
                     Id = ++maxPCId,
-                    ProductId = maxId + 1,
-                    ComponentId = model.DocumentsComponent[i].ComponentId,
-                    Count = model.DocumentsComponent[i].Count
+                    DocumentsId = maxId + 1,
+                    BlankId = model.DocumentBlank[i].BlankId,
+                    Count = model.DocumentBlank[i].Count
                 });
             }
         }
@@ -166,7 +166,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 {
                     index = i;
                 }
-                if (source.Documents[i].ProductName == model.ProductName &&
+                if (source.Documents[i].DocumentsName == model.DocumentsName &&
                 source.Documents[i].Id != model.Id)
                 {
                     throw new Exception("Уже есть изделие с таким названием");
@@ -176,7 +176,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Documents[index].ProductName = model.ProductName;
+            source.Documents[index].DocumentsName = model.DocumentsName;
             source.Documents[index].Price = model.Price;
             int maxPCId = 0;
             for (int i = 0; i < source.DocumentsComponent.Count; ++i)
@@ -189,17 +189,17 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             // обновляем существуюущие компоненты
             for (int i = 0; i < source.DocumentsComponent.Count; ++i)
             {
-                if (source.DocumentsComponent[i].ProductId == model.Id)
+                if (source.DocumentsComponent[i].DocumentsId == model.Id)
                 {
                     bool flag = true;
-                    for (int j = 0; j < model.DocumentsComponent.Count; ++j)
+                    for (int j = 0; j < model.DocumentBlank.Count; ++j)
                     {
                         // если встретили, то изменяем количество
                         if (source.DocumentsComponent[i].Id ==
-                       model.DocumentsComponent[j].Id)
+                       model.DocumentBlank[j].Id)
                         {
                             source.DocumentsComponent[i].Count =
-                           model.DocumentsComponent[j].Count;
+                           model.DocumentBlank[j].Count;
                             flag = false;
                             break;
                         }
@@ -212,33 +212,33 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 }
             }
             // новые записи
-            for (int i = 0; i < model.DocumentsComponent.Count; ++i)
+            for (int i = 0; i < model.DocumentBlank.Count; ++i)
             {
-                if (model.DocumentsComponent[i].Id == 0)
+                if (model.DocumentBlank[i].Id == 0)
                 {
                     // ищем дубли
                     for (int j = 0; j < source.DocumentsComponent.Count; ++j)
                     {
-                        if (source.DocumentsComponent[j].ProductId == model.Id &&
-                        source.DocumentsComponent[j].ComponentId ==
-                       model.DocumentsComponent[i].ComponentId)
+                        if (source.DocumentsComponent[j].DocumentsId == model.Id &&
+                        source.DocumentsComponent[j].BlankId ==
+                       model.DocumentBlank[i].BlankId)
                         {
                             source.DocumentsComponent[j].Count +=
-                           model.DocumentsComponent[i].Count;
-                            model.DocumentsComponent[i].Id =
+                           model.DocumentBlank[i].Count;
+                            model.DocumentBlank[i].Id =
                            source.DocumentsComponent[j].Id;
                             break;
                         }
                     }
                     // если не нашли дубли, то новая запись
-                    if (model.DocumentsComponent[i].Id == 0)
+                    if (model.DocumentBlank[i].Id == 0)
                     {
-                        source.DocumentsComponent.Add(new DocumentsComponent
+                        source.DocumentsComponent.Add(new DocumentBlank
                         {
                             Id = ++maxPCId,
-                            ProductId = model.Id,
-                            ComponentId = model.DocumentsComponent[i].ComponentId,
-                            Count = model.DocumentsComponent[i].Count
+                            DocumentsId = model.Id,
+                            BlankId = model.DocumentBlank[i].BlankId,
+                            Count = model.DocumentBlank[i].Count
                         });
                     }
                 }
@@ -249,7 +249,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             // удаяем записи по компонентам при удалении изделия
             for (int i = 0; i < source.DocumentsComponent.Count; ++i)
             {
-                if (source.DocumentsComponent[i].ProductId == id)
+                if (source.DocumentsComponent[i].DocumentsId == id)
                 {
                     source.DocumentsComponent.RemoveAt(i--);
                 }

@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace AbstractLawFirm
 {
-    public class DocumentsComponent
+    public class Customer
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int ComponentId { get; set; }
-        public int Count { get; set; }
+        public string CustomerFIO { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace AbstractLawFirm___View
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        public DocumentsComponentViewModel Model { set { model = value; } get { return model; } }
+        public DocumentBlankViewModel Model { set { model = value; } get { return model; } }
         private readonly IBlankService service;
-        private DocumentsComponentViewModel model;
+        private DocumentBlankViewModel model;
 
         public FormDocumentsComponent(IBlankService service)
         {
@@ -33,7 +33,7 @@ namespace AbstractLawFirm___View
                 List<BlankViewModel> list = service.GetList();
                 if (list != null)
                 {
-                    comboBoxDocumentsComponent.DisplayMember = "ComponentName";
+                    comboBoxDocumentsComponent.DisplayMember = "BlankName";
                     comboBoxDocumentsComponent.ValueMember = "Id";
                     comboBoxDocumentsComponent.DataSource = list;
                     comboBoxDocumentsComponent.SelectedItem = null;
@@ -46,7 +46,7 @@ namespace AbstractLawFirm___View
             if (model != null)
             {
                 comboBoxDocumentsComponent.Enabled = false;
-                comboBoxDocumentsComponent.SelectedValue = model.ComponentId;
+                comboBoxDocumentsComponent.SelectedValue = model.BlankId;
                 textBoxCount.Text = model.Count.ToString();
             }
         }
@@ -66,10 +66,10 @@ namespace AbstractLawFirm___View
             {
                 if (model == null)
                 {
-                    model = new DocumentsComponentViewModel
+                    model = new DocumentBlankViewModel
                     {
-                        ComponentId = Convert.ToInt32(comboBoxDocumentsComponent.SelectedValue),
-                        ComponentName = comboBoxDocumentsComponent.Text,
+                        BlankId = Convert.ToInt32(comboBoxDocumentsComponent.SelectedValue),
+                        BlankName = comboBoxDocumentsComponent.Text,
                         Count = Convert.ToInt32(textBoxCount.Text)
                     };
                 }

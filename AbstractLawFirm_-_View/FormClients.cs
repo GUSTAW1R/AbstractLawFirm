@@ -17,8 +17,8 @@ namespace AbstractLawFirm___View
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IClientService service;
-        public FormClients(IClientService service)
+        private readonly ICustomerService service;
+        public FormClients(ICustomerService service)
         {
             InitializeComponent();
             this.service = service;
@@ -32,7 +32,7 @@ namespace AbstractLawFirm___View
         {
             try
             {
-                List<ClientViewModel> list = service.GetList();
+                List<CustomerViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridViewClients.DataSource = list;

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace AbstractLawFirm___ServiceDAL.ViewModel
 {
-    public class DocumentsComponentViewModel
+    public class DocumentBlankViewModel
     {
         public int Id { get; set; }
-        public int ProductId { get; set; }
-        public int ComponentId { get; set; }
+        public int DocumentsId { get; set; }
+        public int BlankId { get; set; }
         public int Count { get; set; }
-        public string ComponentName { get; set; }
+        public string BlankName { get; set; }
     }
 }

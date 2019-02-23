@@ -10,72 +10,72 @@ using AbstractLawFirm___ServiceDAL.ViewModel;
 
 namespace AbstractLawFirm___ServiceImplementList.Implementations
 {
-    public class ClientServiceList : IClientService
+    public class CustomerServiceList : ICustomerService
     {
         private DataListSingleton source;
-        public ClientServiceList()
+        public CustomerServiceList()
         {
             source = DataListSingleton.GetInstance();
         }
-        public List<ClientViewModel> GetList()
+        public List<CustomerViewModel> GetList()
         {
-            List<ClientViewModel> result = new List<ClientViewModel>();
-            for (int i = 0; i < source.Clients.Count; ++i)
+            List<CustomerViewModel> result = new List<CustomerViewModel>();
+            for (int i = 0; i < source.Customer.Count; ++i)
             {
-                result.Add(new ClientViewModel
+                result.Add(new CustomerViewModel
                 {
-                    Id = source.Clients[i].Id,
-                    ClientFIO = source.Clients[i].ClientFIO
+                    Id = source.Customer[i].Id,
+                    ClientFIO = source.Customer[i].CustomerFIO
                 });
             }
             return result;
         }
-        public ClientViewModel GetElement(int id)
+        public CustomerViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Customer.Count; ++i)
             {
-                if (source.Clients[i].Id == id)
+                if (source.Customer[i].Id == id)
                 {
-                    return new ClientViewModel
+                    return new CustomerViewModel
                     {
-                        Id = source.Clients[i].Id,
-                        ClientFIO = source.Clients[i].ClientFIO
+                        Id = source.Customer[i].Id,
+                        ClientFIO = source.Customer[i].CustomerFIO
                     };
                 }
             }
             throw new Exception("Элемент не найден");
         }
-        public void AddElement(ClientBindingModel model)
+        public void AddElement(CustomerBindingModel model)
         {
             int maxId = 0;
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Customer.Count; ++i)
             {
-                if (source.Clients[i].Id > maxId)
+                if (source.Customer[i].Id > maxId)
                 {
-                    maxId = source.Clients[i].Id;
+                    maxId = source.Customer[i].Id;
                 }
-                if (source.Clients[i].ClientFIO == model.ClientFIO)
+                if (source.Customer[i].CustomerFIO == model.CustomerFIO)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
             }
-            source.Clients.Add(new Client
+            source.Customer.Add(new Customer
             {
                 Id = maxId + 1,
-                ClientFIO = model.ClientFIO
+                CustomerFIO = model.CustomerFIO
             });
         }
-        public void UpdElement(ClientBindingModel model)
+        public void UpdElement(CustomerBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Customer.Count; ++i)
             {
-                if (source.Clients[i].Id == model.Id)
+                if (source.Customer[i].Id == model.Id)
                 {
                     index = i;
                 }
-                if (source.Clients[i].ClientFIO == model.ClientFIO &&
-                source.Clients[i].Id != model.Id)
+                if (source.Customer[i].CustomerFIO == model.CustomerFIO &&
+                source.Customer[i].Id != model.Id)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
@@ -84,16 +84,16 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Clients[index].ClientFIO = model.ClientFIO;
+            source.Customer[index].CustomerFIO = model.CustomerFIO;
         }
         public void DelElement(int id)
         {
-            for (int i = 0; i < source.Clients.Count; ++i)
+            for (int i = 0; i < source.Customer.Count; ++i)
 
             {
-                if (source.Clients[i].Id == id)
+                if (source.Customer[i].Id == id)
                 {
-                    source.Clients.RemoveAt(i);
+                    source.Customer.RemoveAt(i);
                     return;
                 }
             }

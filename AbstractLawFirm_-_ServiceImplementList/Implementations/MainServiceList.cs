@@ -23,29 +23,29 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             for (int i = 0; i < source.Orders.Count; ++i)
             {
                 string clientFIO = string.Empty;
-                for (int j = 0; j < source.Clients.Count; ++j)
+                for (int j = 0; j < source.Customer.Count; ++j)
                 {
-                    if (source.Clients[j].Id == source.Orders[i].ClientId)
+                    if (source.Customer[j].Id == source.Orders[i].CustomerId)
                     {
-                        clientFIO = source.Clients[j].ClientFIO;
+                        clientFIO = source.Customer[j].CustomerFIO;
                         break;
                     }
                 }
                 string productName = string.Empty;
                 for (int j = 0; j < source.Documents.Count; ++j)
                 {
-                    if (source.Documents[j].Id == source.Orders[i].ProductId)
+                    if (source.Documents[j].Id == source.Orders[i].DocumentsId)
                     {
-                        productName = source.Documents[j].ProductName;
+                        productName = source.Documents[j].DocumentsName;
                         break;
                     }
                 }
                 result.Add(new OrderViewModel
                 {
                     Id = source.Orders[i].Id,
-                    ClientId = source.Orders[i].ClientId,
-                    ClientFIO = clientFIO,
-                    ProductId = source.Orders[i].ProductId,
+                    CustomerId = source.Orders[i].CustomerId,
+                    CustomerFIO = clientFIO,
+                    ProductId = source.Orders[i].DocumentsId,
                     ProductName = productName,
                     Count = source.Orders[i].Count,
                     Sum = source.Orders[i].Sum,
@@ -63,14 +63,14 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 if (source.Orders[i].Id > maxId)
                 {
-                    maxId = source.Clients[i].Id;
+                    maxId = source.Customer[i].Id;
                 }
             }
             source.Orders.Add(new Order
             {
                 Id = maxId + 1,
-                ClientId = model.ClientId,
-                ProductId = model.ProductId,
+                CustomerId = model.CustomerId,
+                DocumentsId = model.DocumentsId,
                 DateCreate = DateTime.Now,
                 Count = model.Count,
                 Sum = model.Sum,
@@ -104,7 +104,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
             {
-                if (source.Clients[i].Id == model.Id)
+                if (source.Customer[i].Id == model.Id)
                 {
                     index = i;
                     break;
@@ -125,7 +125,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
             {
-                if (source.Clients[i].Id == model.Id)
+                if (source.Customer[i].Id == model.Id)
                 {
                     index = i;
                     break;

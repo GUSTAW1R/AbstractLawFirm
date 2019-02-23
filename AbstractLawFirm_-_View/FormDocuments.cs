@@ -21,7 +21,7 @@ namespace AbstractLawFirm___View
         public int Id { set { id = value; } }
         private readonly IDocumentsService service;
         private int? id;
-        private List<DocumentsComponentViewModel> documentsComponent;
+        private List<DocumentBlankViewModel> documentsComponent;
 
         public FormDocuments(IDocumentsService service)
         {
@@ -37,9 +37,9 @@ namespace AbstractLawFirm___View
                     DocumentsViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxName.Text = view.ProductName;
+                        textBoxName.Text = view.DocumentsName;
                         textBoxPrice.Text = view.Price.ToString();
-                        documentsComponent = view.DocumentsComponent;
+                        documentsComponent = view.DocumentBlank;
                         LoadData();
                     }
                 }
@@ -50,7 +50,7 @@ namespace AbstractLawFirm___View
             }
             else
             {
-                documentsComponent = new List<DocumentsComponentViewModel>();
+                documentsComponent = new List<DocumentBlankViewModel>();
             }
         }
 
@@ -82,7 +82,7 @@ namespace AbstractLawFirm___View
                 {
                     if (id.HasValue)
                     {
-                        form.Model.ProductId = id.Value;
+                        form.Model.DocumentsId = id.Value;
                     }
                     documentsComponent.Add(form.Model);
                 }
@@ -143,14 +143,14 @@ namespace AbstractLawFirm___View
             }
             try
             {
-                List<DocumentsComponentBindingModel> documentsComponentBM = new List<DocumentsComponentBindingModel>();
+                List<DocumentBlankBindingModel> documentsComponentBM = new List<DocumentBlankBindingModel>();
                 for (int i = 0; i < documentsComponent.Count; ++i)
                 {
-                    documentsComponentBM.Add(new DocumentsComponentBindingModel
+                    documentsComponentBM.Add(new DocumentBlankBindingModel
                     {
                         Id = documentsComponent[i].Id,
-                        ProductId = documentsComponent[i].ProductId,
-                        ComponentId = documentsComponent[i].ComponentId,
+                        DocumentsId = documentsComponent[i].DocumentsId,
+                        BlankId = documentsComponent[i].BlankId,
                         Count = documentsComponent[i].Count
                     });
                 }
@@ -159,18 +159,18 @@ namespace AbstractLawFirm___View
                     service.UpdElement(new DocumentsBindingModel
                     {
                         Id = id.Value,
-                        ProductName = textBoxName.Text,
+                        DocumentsName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxPrice.Text),
-                        DocumentsComponent = documentsComponentBM
+                        DocumentBlank = documentsComponentBM
                     });
                 }
                 else
                 {
                 service.AddElement(new DocumentsBindingModel
                 {
-                    ProductName = textBoxName.Text,
+                    DocumentsName = textBoxName.Text,
                     Price = Convert.ToInt32(textBoxPrice.Text),
-                    DocumentsComponent = documentsComponentBM
+                    DocumentBlank = documentsComponentBM
                 });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);

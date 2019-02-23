@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace AbstractLawFirm___ServiceDAL.BindingModel
 {
-    public class ClientBindingModel
+    public class CustomerBindingModel
     {
         public int Id { get; set; }
-        public string ClientFIO { get; set; }
+        public string CustomerFIO { get; set; }
     }
 }

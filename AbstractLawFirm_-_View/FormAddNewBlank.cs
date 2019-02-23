@@ -35,7 +35,7 @@ namespace AbstractLawFirm___View
                     BlankViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxNameBlank.Text = view.ComponentName;
+                        textBoxNameBlank.Text = view.BlankNme;
                     }
                 }
                 catch (Exception ex)
@@ -58,14 +58,14 @@ namespace AbstractLawFirm___View
                     service.UpdElement(new BlankBindingModel
                     {
                         Id = id.Value,
-                        ComponentName = textBoxNameBlank.Text
+                        BlankName = textBoxNameBlank.Text
                     });
                 }
                 else
                 {
                     service.AddElement(new BlankBindingModel
                     {
-                        ComponentName = textBoxNameBlank.Text
+                        BlankName = textBoxNameBlank.Text
                     });
                 }
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);

@@ -10,18 +10,18 @@ namespace AbstractLawFirm___ServiceImplementList
     class DataListSingleton
     {
         private static DataListSingleton instance;
-        public List<Client> Clients { get; set; }
+        public List<Customer> Customer { get; set; }
         public List<Blank> Blank { get; set; }
         public List<Order> Orders { get; set; }
         public List<Documents> Documents { get; set; }
-        public List<DocumentsComponent> DocumentsComponent { get; set; }
+        public List<DocumentBlank> DocumentsComponent { get; set; }
         private DataListSingleton()
         {
-            Clients = new List<Client>();
+            Customer = new List<Customer>();
             Blank = new List<Blank>();
             Orders = new List<Order>();
             Documents = new List<Documents>();
-            DocumentsComponent = new List<DocumentsComponent>();
+            DocumentsComponent = new List<DocumentBlank>();
         }
         public static DataListSingleton GetInstance()
         {

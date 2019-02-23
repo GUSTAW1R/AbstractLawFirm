@@ -18,10 +18,10 @@ namespace AbstractLawFirm___View
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IClientService serviceC;
+        private readonly ICustomerService serviceC;
         private readonly IDocumentsService serviceD;
         private readonly IMainService serviceM;
-        public FormCreatOrder(IClientService serviceC, IDocumentsService serviceD, IMainService serviceM)
+        public FormCreatOrder(ICustomerService serviceC, IDocumentsService serviceD, IMainService serviceM)
         {
             InitializeComponent();
             this.serviceC = serviceC;
@@ -32,10 +32,10 @@ namespace AbstractLawFirm___View
         {
             try
             {
-                List<ClientViewModel> listC = serviceC.GetList();
+                List<CustomerViewModel> listC = serviceC.GetList();
                 if (listC != null)
                 {
-                    comboBoxClient.DisplayMember = "ClientFIO";
+                    comboBoxClient.DisplayMember = "CustomerFIO";
                     comboBoxClient.ValueMember = "Id";
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
@@ -43,7 +43,7 @@ namespace AbstractLawFirm___View
                 List<DocumentsViewModel> listP = serviceD.GetList();
                 if (listP != null)
                 {
-                    comboBoxDocument.DisplayMember = "ProductName";
+                    comboBoxDocument.DisplayMember = "DocumentsName";
                     comboBoxDocument.ValueMember = "Id";
                     comboBoxDocument.DataSource = listP;
                     comboBoxDocument.SelectedItem = null;
@@ -101,8 +101,8 @@ namespace AbstractLawFirm___View
             {
                 serviceM.CreateOrder(new OrderBindingModel
                 {
-                    ClientId = Convert.ToInt32(comboBoxClient.SelectedValue),
-                    ProductId = Convert.ToInt32(comboBoxDocument.SelectedValue),
+                    CustomerId = Convert.ToInt32(comboBoxClient.SelectedValue),
+                    DocumentsId = Convert.ToInt32(comboBoxDocument.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
                     Sum = Convert.ToInt32(textBoxSum.Text)
                 });
