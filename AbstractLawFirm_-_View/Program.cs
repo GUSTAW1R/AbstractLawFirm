@@ -30,7 +30,7 @@ namespace AbstractLawFirm___View
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IBlankService, BlankServiceList>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IDocumentsService, ProductServiceList>(new
+            currentContainer.RegisterType<IDocumentsService, DocumentsServiceList>(new
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceList>(new
            HierarchicalLifetimeManager());

@@ -10,10 +10,10 @@ using AbstractLawFirm___ServiceDAL.Interfaces;
 
 namespace AbstractLawFirm___ServiceImplementList.Implementations
 {
-    public class ProductServiceList : IDocumentsService
+    public class DocumentsServiceList : IDocumentsService
     {
         private DataListSingleton source;
-        public ProductServiceList()
+        public DocumentsServiceList()
         {
             source = DataListSingleton.GetInstance();
         }

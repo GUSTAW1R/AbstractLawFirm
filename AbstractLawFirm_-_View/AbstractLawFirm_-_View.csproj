@@ -73,11 +73,11 @@
     <Compile Include="FormBlankList.Designer.cs">
       <DependentUpon>FormBlankList.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormClients.cs">
+    <Compile Include="FormCustomerList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormClients.Designer.cs">
-      <DependentUpon>FormClients.cs</DependentUpon>
+    <Compile Include="FormCustomerList.Designer.cs">
+      <DependentUpon>FormCustomerList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormCreateOrder.cs">
       <SubType>Form</SubType>
@@ -97,11 +97,11 @@
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormClient.cs">
+    <Compile Include="FormAddNewCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormClient.Designer.cs">
-      <DependentUpon>FormClient.cs</DependentUpon>
+    <Compile Include="FormAddNewCustomer.Designer.cs">
+      <DependentUpon>FormAddNewCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="FormDocuments.cs">
       <SubType>Form</SubType>
@@ -132,11 +132,11 @@
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormClients.resx">
-      <DependentUpon>FormClients.cs</DependentUpon>
+    <EmbeddedResource Include="FormCustomerList.resx">
+      <DependentUpon>FormCustomerList.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormClient.resx">
-      <DependentUpon>FormClient.cs</DependentUpon>
+    <EmbeddedResource Include="FormAddNewCustomer.resx">
+      <DependentUpon>FormAddNewCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocuments.resx">
       <DependentUpon>FormDocuments.cs</DependentUpon>

@@ -14,7 +14,7 @@ using Unity;
 
 namespace AbstractLawFirm___View
 {
-    public partial class FormClient : Form
+    public partial class FormAddNewCustomer : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
@@ -22,7 +22,7 @@ namespace AbstractLawFirm___View
         private readonly ICustomerService service;
         private int? id;
 
-        public FormClient(ICustomerService service)
+        public FormAddNewCustomer(ICustomerService service)
         {
             InitializeComponent();
             this.service = service;

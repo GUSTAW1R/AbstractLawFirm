@@ -1,6 +1,6 @@
 ﻿namespace AbstractLawFirm___View
 {
-    partial class FormClients
+    partial class FormCustomerList
     {
         /// <summary>
         /// Required designer variable.

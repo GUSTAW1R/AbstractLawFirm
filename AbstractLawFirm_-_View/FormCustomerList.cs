@@ -13,12 +13,12 @@ using Unity;
 
 namespace AbstractLawFirm___View
 {
-    public partial class FormClients : Form
+    public partial class FormCustomerList : Form
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly ICustomerService service;
-        public FormClients(ICustomerService service)
+        public FormCustomerList(ICustomerService service)
         {
             InitializeComponent();
             this.service = service;
@@ -47,7 +47,7 @@ namespace AbstractLawFirm___View
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormClient>();
+            var form = Container.Resolve<FormAddNewCustomer>();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -57,7 +57,7 @@ namespace AbstractLawFirm___View
         {
             if (dataGridViewClients.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormClient>();
+                var form = Container.Resolve<FormAddNewCustomer>();
                 form.Id = Convert.ToInt32(dataGridViewClients.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
