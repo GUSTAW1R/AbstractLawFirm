@@ -11,7 +11,6 @@ namespace AbstractLawFirm___ServiceDAL.ViewModel
     {
         public int Id { get; set; }
         public string DocumentsName { get; set; }
-        public string ProductComponents { get; set; }
         public decimal Price { get; set; }
         public List<DocumentBlankViewModel> DocumentBlank { get; set; }
     }

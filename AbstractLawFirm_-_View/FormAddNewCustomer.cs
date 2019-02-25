@@ -37,7 +37,7 @@ namespace AbstractLawFirm___View
                     CustomerViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxFIO.Text = view.ClientFIO;
+                        textBoxFIO.Text = view.CustomerFIO;
                     }
                 }
                 catch (Exception ex)

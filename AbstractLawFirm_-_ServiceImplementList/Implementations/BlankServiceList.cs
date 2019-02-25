@@ -24,7 +24,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 result.Add(new BlankViewModel
                 {
                     Id = source.Blank[i].Id,
-                    BlankNme = source.Blank[i].BlankName
+                    BlankName = source.Blank[i].BlankName
                 });
             }
             return result;
@@ -38,7 +38,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                     return new BlankViewModel
                     {
                         Id = source.Blank[i].Id,
-                        BlankNme = source.Blank[i].BlankName
+                        BlankName = source.Blank[i].BlankName
                     };
                 }
             }

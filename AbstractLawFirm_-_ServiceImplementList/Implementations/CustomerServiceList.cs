@@ -25,7 +25,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 result.Add(new CustomerViewModel
                 {
                     Id = source.Customer[i].Id,
-                    ClientFIO = source.Customer[i].CustomerFIO
+                    CustomerFIO = source.Customer[i].CustomerFIO
                 });
             }
             return result;
@@ -39,7 +39,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                     return new CustomerViewModel
                     {
                         Id = source.Customer[i].Id,
-                        ClientFIO = source.Customer[i].CustomerFIO
+                        CustomerFIO = source.Customer[i].CustomerFIO
                     };
                 }
             }

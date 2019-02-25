@@ -96,6 +96,7 @@
             this.Controls.Add(this.dataGridView);
             this.Name = "FormBlankList";
             this.Text = "Список Бланков";
+            this.Load += new System.EventHandler(this.FormClients_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

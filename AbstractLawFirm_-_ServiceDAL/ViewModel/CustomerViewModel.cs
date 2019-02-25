@@ -9,6 +9,6 @@ namespace AbstractLawFirm___ServiceDAL.ViewModel
     public class CustomerViewModel
     {
         public int Id { get; set; }
-        public string ClientFIO { get; set; }
+        public string CustomerFIO { get; set; }
     }
 }

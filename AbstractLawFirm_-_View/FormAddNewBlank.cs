@@ -35,7 +35,7 @@ namespace AbstractLawFirm___View
                     BlankViewModel view = service.GetElement(id.Value);
                     if (view != null)
                     {
-                        textBoxNameBlank.Text = view.BlankNme;
+                        textBoxNameBlank.Text = view.BlankName;
                     }
                 }
                 catch (Exception ex)
