@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace AbstractLawFirm___ServiceDAL.BindingModel
 {
-    class ArchiveBindingModel
+    public class ArchiveBindingModel
     {
+        public int Id { get; set; }
+        public string ArchiveName { get; set; }
     }
 }
