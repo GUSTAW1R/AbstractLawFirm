@@ -46,8 +46,6 @@
     <Compile Include="BindingModel\DocumentBlankBindingModel.cs" />
     <Compile Include="BindingModel\OrderBindingModel.cs" />
     <Compile Include="BindingModel\DocumentsBindingModel.cs" />
-    <Compile Include="BindingModel\OrderStatucBindingModel.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Interfaces\IBlankService.cs" />
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IDocumentsService.cs" />
@@ -57,7 +55,6 @@
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\DocumentBlankViewModel.cs" />
     <Compile Include="ViewModel\DocumentsViewModel.cs" />
-    <Compile Include="ViewModel\OrderStatusViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
