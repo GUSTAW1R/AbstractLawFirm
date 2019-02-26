@@ -48,6 +48,7 @@
     <Compile Include="BindingModel\DocumentBlankBindingModel.cs" />
     <Compile Include="BindingModel\OrderBindingModel.cs" />
     <Compile Include="BindingModel\DocumentsBindingModel.cs" />
+    <Compile Include="Interfaces\IArchiveService.cs" />
     <Compile Include="Interfaces\IBlankService.cs" />
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IDocumentsService.cs" />
