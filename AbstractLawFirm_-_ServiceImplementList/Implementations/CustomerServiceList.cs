@@ -20,26 +20,26 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         public List<CustomerViewModel> GetList()
         {
             List<CustomerViewModel> result = new List<CustomerViewModel>();
-            for (int i = 0; i < source.Customer.Count; ++i)
+            for (int i = 0; i < source.Customers.Count; ++i)
             {
                 result.Add(new CustomerViewModel
                 {
-                    Id = source.Customer[i].Id,
-                    CustomerFIO = source.Customer[i].CustomerFIO
+                    Id = source.Customers[i].Id,
+                    CustomerFIO = source.Customers[i].CustomerFIO
                 });
             }
             return result;
         }
         public CustomerViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Customer.Count; ++i)
+            for (int i = 0; i < source.Customers.Count; ++i)
             {
-                if (source.Customer[i].Id == id)
+                if (source.Customers[i].Id == id)
                 {
                     return new CustomerViewModel
                     {
-                        Id = source.Customer[i].Id,
-                        CustomerFIO = source.Customer[i].CustomerFIO
+                        Id = source.Customers[i].Id,
+                        CustomerFIO = source.Customers[i].CustomerFIO
                     };
                 }
             }
@@ -48,18 +48,18 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         public void AddElement(CustomerBindingModel model)
         {
             int maxId = 0;
-            for (int i = 0; i < source.Customer.Count; ++i)
+            for (int i = 0; i < source.Customers.Count; ++i)
             {
-                if (source.Customer[i].Id > maxId)
+                if (source.Customers[i].Id > maxId)
                 {
-                    maxId = source.Customer[i].Id;
+                    maxId = source.Customers[i].Id;
                 }
-                if (source.Customer[i].CustomerFIO == model.CustomerFIO)
+                if (source.Customers[i].CustomerFIO == model.CustomerFIO)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
             }
-            source.Customer.Add(new Customer
+            source.Customers.Add(new Customer
             {
                 Id = maxId + 1,
                 CustomerFIO = model.CustomerFIO
@@ -68,14 +68,14 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         public void UpdElement(CustomerBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Customer.Count; ++i)
+            for (int i = 0; i < source.Customers.Count; ++i)
             {
-                if (source.Customer[i].Id == model.Id)
+                if (source.Customers[i].Id == model.Id)
                 {
                     index = i;
                 }
-                if (source.Customer[i].CustomerFIO == model.CustomerFIO &&
-                source.Customer[i].Id != model.Id)
+                if (source.Customers[i].CustomerFIO == model.CustomerFIO &&
+                source.Customers[i].Id != model.Id)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
@@ -84,16 +84,16 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Customer[index].CustomerFIO = model.CustomerFIO;
+            source.Customers[index].CustomerFIO = model.CustomerFIO;
         }
         public void DelElement(int id)
         {
-            for (int i = 0; i < source.Customer.Count; ++i)
+            for (int i = 0; i < source.Customers.Count; ++i)
 
             {
-                if (source.Customer[i].Id == id)
+                if (source.Customers[i].Id == id)
                 {
-                    source.Customer.RemoveAt(i);
+                    source.Customers.RemoveAt(i);
                     return;
                 }
             }

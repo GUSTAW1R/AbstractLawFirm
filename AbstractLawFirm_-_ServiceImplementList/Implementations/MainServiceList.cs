@@ -23,11 +23,11 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             for (int i = 0; i < source.Orders.Count; ++i)
             {
                 string clientFIO = string.Empty;
-                for (int j = 0; j < source.Customer.Count; ++j)
+                for (int j = 0; j < source.Customers.Count; ++j)
                 {
-                    if (source.Customer[j].Id == source.Orders[i].CustomerId)
+                    if (source.Customers[j].Id == source.Orders[i].CustomerId)
                     {
-                        clientFIO = source.Customer[j].CustomerFIO;
+                        clientFIO = source.Customers[j].CustomerFIO;
                         break;
                     }
                 }
@@ -63,7 +63,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 if (source.Orders[i].Id > maxId)
                 {
-                    maxId = source.Customer[i].Id;
+                    maxId = source.Customers[i].Id;
                 }
             }
             source.Orders.Add(new Order
@@ -104,7 +104,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
             {
-                if (source.Customer[i].Id == model.Id)
+                if (source.Customers[i].Id == model.Id)
                 {
                     index = i;
                     break;
@@ -125,7 +125,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             int index = -1;
             for (int i = 0; i < source.Orders.Count; ++i)
             {
-                if (source.Customer[i].Id == model.Id)
+                if (source.Customers[i].Id == model.Id)
                 {
                     index = i;
                     break;

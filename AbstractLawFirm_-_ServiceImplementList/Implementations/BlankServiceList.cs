@@ -19,26 +19,26 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         }        public List<BlankViewModel> GetList()
         {
             List<BlankViewModel> result = new List<BlankViewModel>();
-            for (int i = 0; i < source.Blank.Count; ++i)
+            for (int i = 0; i < source.Blanks.Count; ++i)
             {
                 result.Add(new BlankViewModel
                 {
-                    Id = source.Blank[i].Id,
-                    BlankName = source.Blank[i].BlankName
+                    Id = source.Blanks[i].Id,
+                    BlankName = source.Blanks[i].BlankName
                 });
             }
             return result;
         }
         public BlankViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Customer.Count; ++i)
+            for (int i = 0; i < source.Customers.Count; ++i)
             {
-                if (source.Customer[i].Id == id)
+                if (source.Customers[i].Id == id)
                 {
                     return new BlankViewModel
                     {
-                        Id = source.Blank[i].Id,
-                        BlankName = source.Blank[i].BlankName
+                        Id = source.Blanks[i].Id,
+                        BlankName = source.Blanks[i].BlankName
                     };
                 }
             }
@@ -47,18 +47,18 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         public void AddElement(BlankBindingModel model)
         {
             int maxId = 0;
-            for (int i = 0; i < source.Blank.Count; ++i)
+            for (int i = 0; i < source.Blanks.Count; ++i)
             {
-                if (source.Blank[i].Id > maxId)
+                if (source.Blanks[i].Id > maxId)
                 {
-                    maxId = source.Blank[i].Id;
+                    maxId = source.Blanks[i].Id;
                 }
-                if (source.Blank[i].BlankName == model.BlankName)
+                if (source.Blanks[i].BlankName == model.BlankName)
                 {
                     throw new Exception("Уже есть бланк с таким названием");
                 }
             }
-            source.Blank.Add(new Blank
+            source.Blanks.Add(new Blank
             {
                 Id = maxId + 1,
                 BlankName = model.BlankName
@@ -67,14 +67,14 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         public void UpdElement(BlankBindingModel model)
         {
             int index = -1;
-            for (int i = 0; i < source.Blank.Count; ++i)
+            for (int i = 0; i < source.Blanks.Count; ++i)
             {
-                if (source.Customer[i].Id == model.Id)
+                if (source.Customers[i].Id == model.Id)
                 {
                     index = i;
                 }
-                if (source.Customer[i].CustomerFIO == model.BlankName &&
-                source.Customer[i].Id != model.Id)
+                if (source.Customers[i].CustomerFIO == model.BlankName &&
+                source.Customers[i].Id != model.Id)
                 {
                     throw new Exception("Уже есть клиент с таким ФИО");
                 }
@@ -83,14 +83,14 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Blank[index].BlankName = model.BlankName;
+            source.Blanks[index].BlankName = model.BlankName;
         }        public void DelElement(int id)
         {
-            for (int i = 0; i < source.Blank.Count; ++i)
+            for (int i = 0; i < source.Blanks.Count; ++i)
             {
-                if (source.Blank[i].Id == id)
+                if (source.Blanks[i].Id == id)
                 {
-                    source.Blank.RemoveAt(i);
+                    source.Blanks.RemoveAt(i);
                     return;
                 }
             }

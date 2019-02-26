@@ -29,12 +29,12 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                     if (source.DocumentsComponent[j].DocumentsId == source.Documents[i].Id)
                     {
                         string componentName = string.Empty;
-                        for (int k = 0; k < source.Blank.Count; ++k)
+                        for (int k = 0; k < source.Blanks.Count; ++k)
                         {
                             if (source.DocumentsComponent[j].BlankId ==
-                           source.Blank[k].Id)
+                           source.Blanks[k].Id)
                             {
-                                componentName = source.Blank[k].BlankName;
+                                componentName = source.Blanks[k].BlankName;
                                 break;
                             }
                         }
@@ -69,12 +69,12 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                     if (source.DocumentsComponent[j].DocumentsId == source.Documents[i].Id)
                     {
                         string componentName = string.Empty;
-                        for (int k = 0; k < source.Blank.Count; ++k)
+                        for (int k = 0; k < source.Blanks.Count; ++k)
                         {
                             if (source.DocumentsComponent[j].BlankId ==
-                           source.Blank[k].Id)
+                           source.Blanks[k].Id)
                             {
-                                componentName = source.Blank[k].BlankName;
+                                componentName = source.Blanks[k].BlankName;
                                 break;
                             }
                         }
