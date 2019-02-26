@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace AbstractLawFirm___ServiceDAL.ViewModel
 {
-    class ArchiveViewModel
+    public class ArchiveViewModel
     {
+        public int Id { get; set; }
+        public string ArchiveName { get; set; }
+        public List<ArchiveComponentViewModel> ArchiveComponent { get; set; }
     }
 }
