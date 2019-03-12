@@ -25,7 +25,10 @@ namespace AbstractLawFirm___View
             InitializeComponent();
             this.service = service;
         }
-
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            LoadData();
+        }
         private void LoadData()
         {
             try
@@ -59,6 +62,16 @@ namespace AbstractLawFirm___View
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormDocumentsList>();
+            form.ShowDialog();
+        }
+        private void пополнениеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormPutOnArchive>();
+            form.ShowDialog();
+        }
+        private void архивыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormArchiveList>();
             form.ShowDialog();
         }
         private void buttonCreateOrder_Click(object sender, EventArgs e)

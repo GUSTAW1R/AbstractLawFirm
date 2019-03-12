@@ -19,103 +19,57 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         }
         public List<DocumentsViewModel> GetList()
         {
-            List<DocumentsViewModel> result = new List<DocumentsViewModel>();
-            for (int i = 0; i < source.Documents.Count; ++i)
+            List<DocumentsViewModel> result = source.Documents.Select(rec => new DocumentsViewModel
             {
-
-            List<DocumentBlankViewModel> documentBlank = new List<DocumentBlankViewModel>();
-                for (int j = 0; j < source.DocumentsComponent.Count; ++j)
-                {
-                    if (source.DocumentsComponent[j].DocumentsId == source.Documents[i].Id)
-                    {
-                        string componentName = string.Empty;
-                        for (int k = 0; k < source.Blank.Count; ++k)
-                        {
-                            if (source.DocumentsComponent[j].BlankId ==
-                           source.Blank[k].Id)
-                            {
-                                componentName = source.Blank[k].BlankName;
-                                break;
-                            }
-                        }
-                        documentBlank.Add(new DocumentBlankViewModel
-                        {
-                            Id = source.DocumentsComponent[j].Id,
-                        DocumentsId = source.DocumentsComponent[j].DocumentsId,
-                            BlankId = source.DocumentsComponent[j].BlankId,
-                            BlankName = componentName,
-                            Count = source.DocumentsComponent[j].Count
-                        });
-                    }
-                }
-                result.Add(new DocumentsViewModel
-                {
-                    Id = source.Documents[i].Id,
-                    DocumentsName = source.Documents[i].DocumentsName,
-                    Price = source.Documents[i].Price,
-                    DocumentBlank = documentBlank
-                });
-            }
+                Id = rec.Id,
+                DocumentsName = rec.DocumentsName,
+                Price = rec.Price,
+                DocumentBlank = source.DocumentBlanks
+                .Where(recPC => recPC.DocumentsId == rec.Id)
+                     .Select(recPC => new DocumentBlankViewModel
+                     {
+                         Id = recPC.Id,
+                         DocumentsId = recPC.DocumentsId,
+                         BlankId = recPC.BlankId,
+                         BlankName = source.Blanks.FirstOrDefault(recC => recC.Id == recPC.BlankId)?.BlankName,
+                         Count = recPC.Count
+                     }).ToList()
+            }).ToList();
             return result;
         }
         public DocumentsViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Documents.Count; ++i)
+            Documents element = source.Documents.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-
-            List<DocumentBlankViewModel> documentBlank = new List<DocumentBlankViewModel>();
-                for (int j = 0; j < source.DocumentsComponent.Count; ++j)
+                return new DocumentsViewModel
                 {
-                    if (source.DocumentsComponent[j].DocumentsId == source.Documents[i].Id)
-                    {
-                        string componentName = string.Empty;
-                        for (int k = 0; k < source.Blank.Count; ++k)
-                        {
-                            if (source.DocumentsComponent[j].BlankId ==
-                           source.Blank[k].Id)
-                            {
-                                componentName = source.Blank[k].BlankName;
-                                break;
-                            }
-                        }
-                        documentBlank.Add(new DocumentBlankViewModel
-                        {
-                            Id = source.DocumentsComponent[j].Id,
-                            DocumentsId = source.DocumentsComponent[j].DocumentsId,
-                            BlankId = source.DocumentsComponent[j].BlankId,
-                            BlankName = componentName,
-                            Count = source.DocumentsComponent[j].Count
-                        });
-                    }
-                }
-                if (source.Documents[i].Id == id)
-                {
-                    return new DocumentsViewModel
-                    {
-                        Id = source.Documents[i].Id,
-                        DocumentsName = source.Documents[i].DocumentsName,
-                        Price = source.Documents[i].Price,
-                        DocumentBlank = documentBlank
-                    };
-                }
+                    Id = element.Id,
+                    DocumentsName = element.DocumentsName,
+                    Price = element.Price,
+                    DocumentBlank = source.DocumentBlanks
+                     .Where(recPC => recPC.DocumentsId == element.Id)
+                      .Select(recPC => new DocumentBlankViewModel
+                      {
+                         Id = recPC.Id,
+                         DocumentsId = recPC.DocumentsId,
+                         BlankId = recPC.BlankId,
+                         BlankName = source.Blanks.FirstOrDefault(recC => recC.Id == recPC.BlankId)?.BlankName,
+                         Count = recPC.Count
+                }).ToList()
+                };
             }
             throw new Exception("Элемент не найден");
         }
 
         public void AddElement(DocumentsBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Documents.Count; ++i)
+            Documents element = source.Documents.FirstOrDefault(rec => rec.DocumentsName == model.DocumentsName);
+            if (element != null)
             {
-                if (source.Documents[i].Id > maxId)
-                {
-                    maxId = source.Documents[i].Id;
-                }
-                if (source.Documents[i].DocumentsName == model.DocumentsName)
-                {
-                    throw new Exception("Уже есть изделие с таким названием");
-                }
+                throw new Exception("Уже есть изделие с таким названием");
             }
+            int maxId = source.Documents.Count > 0 ? source.Documents.Max(rec => rec.Id) :0;
             source.Documents.Add(new Documents
             {
                 Id = maxId + 1,
@@ -123,37 +77,25 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 Price = model.Price
             });
             // компоненты для изделия
-            int maxPCId = 0;
-            for (int i = 0; i < source.DocumentsComponent.Count; ++i)
-            {
-                if (source.DocumentsComponent[i].Id > maxPCId)
-                {
-                    maxPCId = source.DocumentsComponent[i].Id;
-                }
-            }
+            int maxPCId = source.DocumentBlanks.Count > 0 ?
+           source.DocumentBlanks.Max(rec => rec.Id) : 0;
             // убираем дубли по компонентам
-            for (int i = 0; i < model.DocumentBlank.Count; ++i)
-            {
-                for (int j = 1; j < model.DocumentBlank.Count; ++j)
-                {
-                    if (model.DocumentBlank[i].BlankId ==
-                    model.DocumentBlank[j].BlankId)
-                    {
-                        model.DocumentBlank[i].Count +=
-                        model.DocumentBlank[j].Count;
-                        model.DocumentBlank.RemoveAt(j--);
-                    }
-                }
-            }
+            var groupComponents = model.DocumentBlank
+            .GroupBy(rec => rec.BlankId)
+           .Select(rec => new
+           {
+               ComponentId = rec.Key,
+               Count = rec.Sum(r => r.Count)
+           });
             // добавляем компоненты
-            for (int i = 0; i < model.DocumentBlank.Count; ++i)
+            foreach (var groupComponent in groupComponents)
             {
-                source.DocumentsComponent.Add(new DocumentBlank
+                source.DocumentBlanks.Add(new DocumentBlank
                 {
                     Id = ++maxPCId,
                     DocumentsId = maxId + 1,
-                    BlankId = model.DocumentBlank[i].BlankId,
-                    Count = model.DocumentBlank[i].Count
+                    BlankId = groupComponent.ComponentId,
+                    Count = groupComponent.Count
                 });
             }
         }
@@ -179,26 +121,26 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             source.Documents[index].DocumentsName = model.DocumentsName;
             source.Documents[index].Price = model.Price;
             int maxPCId = 0;
-            for (int i = 0; i < source.DocumentsComponent.Count; ++i)
+            for (int i = 0; i < source.DocumentBlanks.Count; ++i)
             {
-                if (source.DocumentsComponent[i].Id > maxPCId)
+                if (source.DocumentBlanks[i].Id > maxPCId)
                 {
-                    maxPCId = source.DocumentsComponent[i].Id;
+                    maxPCId = source.DocumentBlanks[i].Id;
                 }
             }
             // обновляем существуюущие компоненты
-            for (int i = 0; i < source.DocumentsComponent.Count; ++i)
+            for (int i = 0; i < source.DocumentBlanks.Count; ++i)
             {
-                if (source.DocumentsComponent[i].DocumentsId == model.Id)
+                if (source.DocumentBlanks[i].DocumentsId == model.Id)
                 {
                     bool flag = true;
                     for (int j = 0; j < model.DocumentBlank.Count; ++j)
                     {
                         // если встретили, то изменяем количество
-                        if (source.DocumentsComponent[i].Id ==
+                        if (source.DocumentBlanks[i].Id ==
                        model.DocumentBlank[j].Id)
                         {
-                            source.DocumentsComponent[i].Count =
+                            source.DocumentBlanks[i].Count =
                            model.DocumentBlank[j].Count;
                             flag = false;
                             break;
@@ -207,7 +149,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                     // если не встретили, то удаляем
                     if (flag)
                     {
-                        source.DocumentsComponent.RemoveAt(i--);
+                        source.DocumentBlanks.RemoveAt(i--);
                     }
                 }
             }
@@ -217,23 +159,23 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 if (model.DocumentBlank[i].Id == 0)
                 {
                     // ищем дубли
-                    for (int j = 0; j < source.DocumentsComponent.Count; ++j)
+                    for (int j = 0; j < source.DocumentBlanks.Count; ++j)
                     {
-                        if (source.DocumentsComponent[j].DocumentsId == model.Id &&
-                        source.DocumentsComponent[j].BlankId ==
+                        if (source.DocumentBlanks[j].DocumentsId == model.Id &&
+                        source.DocumentBlanks[j].BlankId ==
                        model.DocumentBlank[i].BlankId)
                         {
-                            source.DocumentsComponent[j].Count +=
+                            source.DocumentBlanks[j].Count +=
                            model.DocumentBlank[i].Count;
                             model.DocumentBlank[i].Id =
-                           source.DocumentsComponent[j].Id;
+                           source.DocumentBlanks[j].Id;
                             break;
                         }
                     }
                     // если не нашли дубли, то новая запись
                     if (model.DocumentBlank[i].Id == 0)
                     {
-                        source.DocumentsComponent.Add(new DocumentBlank
+                        source.DocumentBlanks.Add(new DocumentBlank
                         {
                             Id = ++maxPCId,
                             DocumentsId = model.Id,
@@ -246,23 +188,18 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         }
         public void DelElement(int id)
         {
-            // удаяем записи по компонентам при удалении изделия
-            for (int i = 0; i < source.DocumentsComponent.Count; ++i)
+            Documents element = source.Documents.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.DocumentsComponent[i].DocumentsId == id)
-                {
-                    source.DocumentsComponent.RemoveAt(i--);
-                }
+                // удаяем записи по компонентам при удалении изделия
+                source.DocumentBlanks.RemoveAll(rec => rec.DocumentsId == id);
+                source.Documents.Remove(element);
             }
-            for (int i = 0; i < source.Documents.Count; ++i)
+            else
             {
-                if (source.Documents[i].Id == id)
-                {
-                    source.Documents.RemoveAt(i);
-                    return;
-                }
+                throw new Exception("Элемент не найден");
             }
-            throw new Exception("Элемент не найден");
         }
     }
 }
+
