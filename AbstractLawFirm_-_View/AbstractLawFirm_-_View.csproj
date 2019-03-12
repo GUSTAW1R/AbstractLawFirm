@@ -53,19 +53,31 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Unity.Abstractions, Version=4.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.9.5\lib\net46\Unity.Abstractions.dll</HintPath>
+    <Reference Include="Unity.Abstractions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.9.7\lib\net46\Unity.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Container, Version=5.9.5.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
-      <HintPath>..\packages\Unity.5.9.5\lib\net46\Unity.Container.dll</HintPath>
+    <Reference Include="Unity.Container, Version=5.9.7.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.5.9.7\lib\net46\Unity.Container.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddNewArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNewArchive.Designer.cs">
+      <DependentUpon>FormAddNewArchive.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddNewBlank.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAddNewBlank.Designer.cs">
       <DependentUpon>FormAddNewBlank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormArchiveList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArchiveList.Designer.cs">
+      <DependentUpon>FormArchiveList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBlankList.cs">
       <SubType>Form</SubType>
@@ -115,10 +127,22 @@
     <Compile Include="FormDocumentsComponent.Designer.cs">
       <DependentUpon>FormDocumentsComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormPutOnArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPutOnArchive.Designer.cs">
+      <DependentUpon>FormPutOnArchive.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormAddNewArchive.resx">
+      <DependentUpon>FormAddNewArchive.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAddNewBlank.resx">
       <DependentUpon>FormAddNewBlank.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormArchiveList.resx">
+      <DependentUpon>FormArchiveList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBlankList.resx">
       <DependentUpon>FormBlankList.cs</DependentUpon>
@@ -143,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormDocumentsComponent.resx">
       <DependentUpon>FormDocumentsComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPutOnArchive.resx">
+      <DependentUpon>FormPutOnArchive.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

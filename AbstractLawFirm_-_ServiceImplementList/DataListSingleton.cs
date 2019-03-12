@@ -14,7 +14,7 @@ namespace AbstractLawFirm___ServiceImplementList
         public List<Blank> Blanks { get; set; }
         public List<Order> Orders { get; set; }
         public List<Documents> Documents { get; set; }
-        public List<DocumentBlank> DocumentsComponent { get; set; }
+        public List<DocumentBlank> DocumentBlanks { get; set; }
         public List<Archive> Archives { get; set; }
         public List<ArchiveComponent> ArchiveComponents { get; set; }
         private DataListSingleton()
@@ -23,7 +23,7 @@ namespace AbstractLawFirm___ServiceImplementList
             Blanks = new List<Blank>();
             Orders = new List<Order>();
             Documents = new List<Documents>();
-            DocumentsComponent = new List<DocumentBlank>();
+            DocumentBlanks = new List<DocumentBlank>();
             Archives = new List<Archive>();
             ArchiveComponents = new List<ArchiveComponent>();
         }
