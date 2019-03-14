@@ -12,5 +12,7 @@ namespace AbstractLawFirm
         public int DocumentsId { get; set; }
         public int BlankId { get; set; }
         public int Count { get; set; }
+        public virtual Documents Documents { get; set; }
+        public virtual Blank Blank { get; set; }
     }
 }
