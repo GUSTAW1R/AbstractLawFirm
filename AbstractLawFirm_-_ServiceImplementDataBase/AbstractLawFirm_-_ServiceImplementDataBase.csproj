@@ -49,6 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractLawFirmDbContext.cs" />
+    <Compile Include="Implementations\ArchiveServiceDB.cs" />
+    <Compile Include="Implementations\BlankServiceDB.cs" />
+    <Compile Include="Implementations\CustomerServiceDB.cs" />
+    <Compile Include="Implementations\DocumentsServiceDB.cs" />
+    <Compile Include="Implementations\MainServiceDB.cs" />
+    <Compile Include="Migrations\201903130851391_FirstMigration.cs" />
+    <Compile Include="Migrations\201903130851391_FirstMigration.Designer.cs">
+      <DependentUpon>201903130851391_FirstMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,14 +74,11 @@
       <Project>{d40f12d2-a117-461f-8dbb-0b44228a37fb}</Project>
       <Name>AbstractLawFirm_-_ServiceDAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AbstractLawFirm_-_ServiceImplementList\AbstractLawFirm_-_ServiceImplementList.csproj">
-      <Project>{36afa1fe-561c-4211-aa44-4b7f6b4364c2}</Project>
-      <Name>AbstractLawFirm_-_ServiceImplementList</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AbstractLawFirm_-_View\AbstractLawFirm_-_View.csproj">
-      <Project>{c2694554-bfe4-465b-be35-aacb2561779a}</Project>
-      <Name>AbstractLawFirm_-_View</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201903130851391_FirstMigration.resx">
+      <DependentUpon>201903130851391_FirstMigration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

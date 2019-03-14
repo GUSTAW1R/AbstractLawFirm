@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.Interfaces;
+using AbstractLawFirm___ServiceImplementDataBase;
+using AbstractLawFirm___ServiceImplementDataBase.Implementations;
 using AbstractLawFirm___ServiceImplementList.Implementations;
 using Unity;
 using Unity.Lifetime;
@@ -26,17 +29,18 @@ namespace AbstractLawFirm___View
         public static IUnityContainer BuildUnityContainer()
         {
             var currentContainer = new UnityContainer();
-            currentContainer.RegisterType<ICustomerService, CustomerServiceList>(new
+            currentContainer.RegisterType<DbContext, AbstractLawFirmDbContext>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IBlankService, BlankServiceList>(new
+            currentContainer.RegisterType<ICustomerService, CustomerServiceDB>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IDocumentsService, DocumentsServiceList>(new
+            currentContainer.RegisterType<IBlankService, BlankServiceDB>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IMainService, MainServiceList>(new
+            currentContainer.RegisterType<IDocumentsService, DocumentsServiceDB>(new
            HierarchicalLifetimeManager());
-            currentContainer.RegisterType<IArchiveService, ArchiveServiceList>(new
+            currentContainer.RegisterType<IArchiveService, ArchiveServiceDB>(new
            HierarchicalLifetimeManager());
-
+            currentContainer.RegisterType<IMainService, MainServiceDB>(new
+           HierarchicalLifetimeManager());
             return currentContainer;
         }
     }

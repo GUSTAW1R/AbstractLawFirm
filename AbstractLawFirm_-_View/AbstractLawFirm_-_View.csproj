@@ -36,7 +36,14 @@
     <StartupObject>AbstractLawFirm___View.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
@@ -205,6 +212,10 @@
     <ProjectReference Include="..\AbstractLawFirm_-_ServiceDAL\AbstractLawFirm_-_ServiceDAL.csproj">
       <Project>{d40f12d2-a117-461f-8dbb-0b44228a37fb}</Project>
       <Name>AbstractLawFirm_-_ServiceDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AbstractLawFirm_-_ServiceImplementDataBase\AbstractLawFirm_-_ServiceImplementDataBase.csproj">
+      <Project>{BB7E0EE8-B777-4688-8911-F9076A945134}</Project>
+      <Name>AbstractLawFirm_-_ServiceImplementDataBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbstractLawFirm_-_ServiceImplementList\AbstractLawFirm_-_ServiceImplementList.csproj">
       <Project>{36afa1fe-561c-4211-aa44-4b7f6b4364c2}</Project>

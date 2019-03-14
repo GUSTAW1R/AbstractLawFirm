@@ -8,7 +8,7 @@ using AbstractLawFirm;
 
 namespace AbstractLawFirm___ServiceImplementDataBase
 {
-    class AbstractLawFirmDbContext : DbContext
+    public class AbstractLawFirmDbContext : DbContext
     {
         public AbstractLawFirmDbContext() : base("AbstractDatabase")
         {
