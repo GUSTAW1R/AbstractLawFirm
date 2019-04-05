@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
+using AbstractLawFirm___ServiceImplementDataBase.Implementations;
 using Unity;
 
 namespace AbstractLawFirm___View
@@ -19,11 +20,13 @@ namespace AbstractLawFirm___View
         [Dependency]
         public new IUnityContainer Container { get; set; }
         private readonly IMainService service;
+        private readonly IReportService reportService;
 
-        public FormMain(IMainService service)
+        public FormMain(IMainService service, IReportService reportService)
         {
             InitializeComponent();
             this.service = service;
+            this.reportService = reportService;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -72,6 +75,40 @@ namespace AbstractLawFirm___View
         private void архивыToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = Container.Resolve<FormArchiveList>();
+            form.ShowDialog();
+        }
+        private void прайсДокументовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "doc|*.doc|docx|*.docx"
+            };
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    reportService.SaveDocumentPrice(new ReportBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void загруженностьАрхивовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormArchivesLoad>();
+            form.ShowDialog();
+        }
+        private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<FormCustomerOrders>();
             form.ShowDialog();
         }
         private void buttonCreateOrder_Click(object sender, EventArgs e)

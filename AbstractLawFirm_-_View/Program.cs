@@ -41,6 +41,8 @@ namespace AbstractLawFirm___View
            HierarchicalLifetimeManager());
             currentContainer.RegisterType<IMainService, MainServiceDB>(new
            HierarchicalLifetimeManager());
+            currentContainer.RegisterType<IReportService, ReportServiceDB>(new
+           HierarchicalLifetimeManager());
             return currentContainer;
         }
     }
