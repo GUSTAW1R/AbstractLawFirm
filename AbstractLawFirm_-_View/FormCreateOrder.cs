@@ -97,8 +97,8 @@ namespace AbstractLawFirm___View
                 MessageBoxIcon.Error);
                 return;
             }
-            //try
-            //{
+            try
+            {
                 serviceM.CreateOrder(new OrderBindingModel
                 {
                     CustomerId = Convert.ToInt32(comboBoxClient.SelectedValue),
@@ -109,11 +109,11 @@ namespace AbstractLawFirm___View
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
                 Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void buttonCancel_Click(object sender, EventArgs e)
         {
