@@ -1,0 +1,20 @@
+﻿<Window x:Name="AddNewBlank" x:Class="AbstractLawFirm___ViewWPF.FormAddNewBlank"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AbstractLawFirm___ViewWPF"
+        mc:Ignorable="d"
+        Title="Добавить новый бланк" Height="580" Width="497">
+    <Grid>
+        <Grid x:Name="Buttons">
+            <Button x:Name="ButtonAdd"  Width="99" Content="Добавить" Margin="368,32,22,465" />
+            <Button x:Name="ButtonRef"  Width="99" Content="Изменить" Margin="368,155,22,342" />
+            <Button x:Name="ButtonDel"  Width="99" Content="Удалить" Margin="368,283,22,214" />
+            <Button x:Name="ButtonUpd"  Width="99" Content="Обновить" Margin="368,407,22,90" />
+        </Grid>
+        <Grid x:Name="DataGrid">
+            <DataGrid x:Name="DataGridView" Margin="25,34,144,27"/>
+        </Grid>
+    </Grid>
+</Window>
