@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AbstractLawFirm___ViewWPF"
         mc:Ignorable="d"
-        Title="Добавить новый бланк" Height="580" Width="497">
+        Title="Добавить новый бланк" Height="580" Width="497" Loaded="FormClients_Load">
     <Grid>
         <Grid x:Name="Buttons">
             <Button x:Name="ButtonAdd"  Width="99" Content="Добавить" Margin="368,32,22,465" />
@@ -14,7 +14,7 @@
             <Button x:Name="ButtonUpd"  Width="99" Content="Обновить" Margin="368,407,22,90" />
         </Grid>
         <Grid x:Name="DataGrid">
-            <DataGrid x:Name="DataGridView" Margin="25,34,144,27"/>
+            <DataGrid x:Name="DataGridView" AutoGenerateColumns="True" Margin="25,34,144,27"/>
         </Grid>
     </Grid>
 </Window>

@@ -32,10 +32,6 @@ namespace AbstractLawFirm___ViewWPF
             this.service = service;
         }
 
-        private void FormClients_Load(object sender, EventArgs e)
-        {
-            LoadData();
-        }
 
         private void LoadData()
         {
@@ -75,7 +71,7 @@ namespace AbstractLawFirm___ViewWPF
         }
         private void buttonDel_Click(object sender, EventArgs e)
         {
-            if (DataGridView.SelectedRows.Count == 1)
+            if (DataGridView.Loaded.Count == 1)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -94,6 +90,11 @@ namespace AbstractLawFirm___ViewWPF
         }
 
         private void buttonRef_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void FormClients_Load(object sender, RoutedEventArgs e)
         {
             LoadData();
         }
