@@ -1,0 +1,25 @@
+﻿<Window x:Class="AbstractLawFirm___ViewWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AbstractLawFirm___ViewWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="481.395" Width="899.418">
+    <Grid Loaded="Grid_Loaded">
+        <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="400" Margin="10,32,0,0" VerticalAlignment="Top" Width="684"/>
+        <Button x:Name="buttonAddOrder" Content="Оформить заказ на документ" HorizontalAlignment="Left" Height="49" Margin="715,32,0,0" VerticalAlignment="Top" Width="166" Click="ButtonAddOrder_Click"/>
+        <Button x:Name="button1" Content="Отдать на оформление" HorizontalAlignment="Left" Height="47" Margin="715,118,0,0" VerticalAlignment="Top" Width="166" Click="Button1_Click"/>
+        <Button x:Name="button2" Content="Оформленный документ готов" HorizontalAlignment="Left" Height="45" Margin="715,208,0,0" VerticalAlignment="Top" Width="166" Click="Button2_Click"/>
+        <Button x:Name="button3" Content="Услуги по оформлению оплачены" HorizontalAlignment="Left" Height="41" Margin="715,299,0,0" VerticalAlignment="Top" Width="166" Click="Button3_Click"/>
+        <Button x:Name="buttonUpd" Content="Обновить" HorizontalAlignment="Left" Height="39" Margin="715,393,0,0" VerticalAlignment="Top" Width="166" Click="ButtonUpd_Click"/>
+        <Menu x:Name="menu" HorizontalAlignment="Left" Height="27" Margin="10,0,0,0" VerticalAlignment="Top" Width="167">
+            <MenuItem Header="Справочник" Height="22" Width="137">
+                <MenuItem Header="Клиент" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="клиентыToolStripMenuItem_Click"/>
+                <MenuItem Header="Бланки" HorizontalAlignment="Left" Height="24" Width="158" Margin="0,0,-18,0" Click="бланкиToolStripMenuItem_Click"/>
+                <MenuItem Header="Документы" HorizontalAlignment="Left" Height="28" Width="143" Margin="0,0,-1,0" Click="документыToolStripMenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+
+    </Grid>
+</Window>
