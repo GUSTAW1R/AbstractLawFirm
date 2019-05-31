@@ -112,7 +112,7 @@ namespace AbstractLawFirm___ViewWPF
                 {
                     try
                     {
-                        documentsComponent.RemoveAt(dateGridView.SelectedItems[0].Cells[0].RowIndex);
+                        documentsComponent.RemoveAt(dateGridView.SelectedIndex);
                     }
                     catch (Exception ex)
                     {
@@ -128,10 +128,10 @@ namespace AbstractLawFirm___ViewWPF
             if (dateGridView.SelectedItems.Count == 1)
             {
                 var window = Container.Resolve<WindowDocumentsComponent>();
-                window.Model = documentsComponent[dateGridView.SelectedRows[0].Cells[0].RowIndex];
+                window.Model = documentsComponent[dateGridView.SelectedIndex];
                 if (window.ShowDialog() == true)
                 {
-                    documentsComponent[dateGridView.SelectedRows[0].Cells[0].RowIndex] = window.Model;
+                    documentsComponent[dateGridView.SelectedIndex] = window.Model;
                     LoadData();
                 }
             }

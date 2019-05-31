@@ -61,11 +61,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormAddNewArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNewArchive.Designer.cs">
+      <DependentUpon>FormAddNewArchive.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddNewBlank.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAddNewBlank.Designer.cs">
       <DependentUpon>FormAddNewBlank.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormArchiveList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormArchiveList.Designer.cs">
+      <DependentUpon>FormArchiveList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormBlankList.cs">
       <SubType>Form</SubType>
@@ -114,6 +126,12 @@
     </Compile>
     <Compile Include="FormDocumentsComponent.Designer.cs">
       <DependentUpon>FormDocumentsComponent.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPutOnArchive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPutOnArchive.Designer.cs">
+      <DependentUpon>FormPutOnArchive.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

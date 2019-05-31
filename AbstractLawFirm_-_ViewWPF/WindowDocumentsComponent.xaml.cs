@@ -78,7 +78,7 @@ namespace AbstractLawFirm___ViewWPF
                 List<BlankViewModel> list = service.GetList();
                 if (list != null)
                 {
-                    comboBoxDocumentsComponent.SelectedItem = "BlankName";
+                    comboBoxDocumentsComponent.DisplayMemberPath = "BlankName";
                     comboBoxDocumentsComponent.SelectedValuePath = "Id";
                     comboBoxDocumentsComponent.ItemsSource = list;
                     comboBoxDocumentsComponent.SelectedItem = null;

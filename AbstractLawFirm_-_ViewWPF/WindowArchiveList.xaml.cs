@@ -18,15 +18,15 @@ using Unity;
 namespace AbstractLawFirm___ViewWPF
 {
     /// <summary>
-    /// Логика взаимодействия для WindowDocumentsList.xaml
+    /// Логика взаимодействия для WindowArchiveList.xaml
     /// </summary>
-    public partial class WindowDocumentsList : Window
+    public partial class WindowArchiveList : Window
     {
         [Dependency]
         public new IUnityContainer Container { get; set; }
-        private readonly IDocumentsService service;
+        private readonly IArchiveService service;
 
-        public WindowDocumentsList(IDocumentsService service)
+        public WindowArchiveList(IArchiveService service)
         {
             InitializeComponent();
             this.service = service;
@@ -41,7 +41,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                List<DocumentsViewModel> list = service.GetList();
+                List<ArchiveViewModel> list = service.GetList();
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -57,8 +57,8 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowDocuments>();
-            if (window.ShowDialog() == true)
+            var form = Container.Resolve<WindowAddNewArchive>();
+            if (form.ShowDialog() == true)
             {
                 LoadData();
             }
@@ -71,11 +71,11 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonDel_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridView.SelectedItems.Count == 1)
+            if (dataGridView.SelectedItems != null)
             {
                 if (MessageBox.Show("Удалить запись", "Вопрос", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
-                    int id = ((DocumentsViewModel)dataGridView.SelectedItem).Id;
+                    int id = Convert.ToInt32(dataGridView.SelectedItems);
                     try
                     {
                         service.DelElement(id);
@@ -91,10 +91,10 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonUpd_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGridView.SelectedItems.Count == 1)
+            if (dataGridView.SelectedItems != null)
             {
-                var form = Container.Resolve<WindowDocuments>();
-                form.Id = ((DocumentsViewModel)dataGridView.SelectedItem).Id;
+                var form = Container.Resolve<WindowAddNewArchive>();
+                form.Id = Convert.ToInt32(dataGridView.SelectedItems);
                 if (form.ShowDialog() == true)
                 {
                     LoadData();

@@ -41,16 +41,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindingModel\ArchiveBindingModel.cs" />
+    <Compile Include="BindingModel\ArchiveComponentBindingModel.cs" />
     <Compile Include="BindingModel\BlankBindingModel.cs" />
     <Compile Include="BindingModel\CustomerBindingModel.cs" />
     <Compile Include="BindingModel\DocumentBlankBindingModel.cs" />
     <Compile Include="BindingModel\OrderBindingModel.cs" />
     <Compile Include="BindingModel\DocumentsBindingModel.cs" />
+    <Compile Include="Interfaces\IArchiveService.cs" />
     <Compile Include="Interfaces\IBlankService.cs" />
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IDocumentsService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\ArchiveComponentViewModel.cs" />
+    <Compile Include="ViewModel\ArchiveViewModel.cs" />
     <Compile Include="ViewModel\BlankViewModel.cs" />
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\DocumentBlankViewModel.cs" />
