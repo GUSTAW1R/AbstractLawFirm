@@ -67,10 +67,30 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="FormAddNewBlank.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="WindowAddNewBlank.xaml.cs">
+      <DependentUpon>WindowAddNewBlank.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowAddNewCustomer.xaml.cs">
+      <DependentUpon>WindowAddNewCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowBlankList.xaml.cs">
+      <DependentUpon>WindowBlankList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowCreateOrder.xaml.cs">
+      <DependentUpon>WindowCreateOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowCustomerList.xaml.cs">
+      <DependentUpon>WindowCustomerList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowDocuments.xaml.cs">
+      <DependentUpon>WindowDocuments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowDocumentsComponent.xaml.cs">
+      <DependentUpon>WindowDocumentsComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowDocumentsList.xaml.cs">
+      <DependentUpon>WindowDocumentsList.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -79,13 +99,42 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FormAddNewBlank.xaml.cs">
-      <DependentUpon>FormAddNewBlank.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WindowAddNewBlank.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowAddNewCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowBlankList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowCreateOrder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowCustomerList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowDocuments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowDocumentsComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowDocumentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

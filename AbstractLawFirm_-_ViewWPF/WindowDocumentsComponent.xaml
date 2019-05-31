@@ -1,0 +1,18 @@
+﻿<Window x:Class="AbstractLawFirm___ViewWPF.WindowDocumentsComponent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AbstractLawFirm___ViewWPF"
+        mc:Ignorable="d"
+        Title="WindowDocumentsComponent" Height="407.895" Width="653.947">
+    <Grid Loaded="Grid_Loaded">
+        <ComboBox x:Name="comboBoxDocumentsComponent" HorizontalAlignment="Left" Height="32" Margin="236,96,0,0" VerticalAlignment="Top" Width="356"/>
+        <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Height="38" Margin="236,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="356"/>
+        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="43" Margin="50,306,0,0" VerticalAlignment="Top" Width="180" Click="ButtonSave_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="43" Margin="412,306,0,0" VerticalAlignment="Top" Width="180" Click="ButtonCancel_Click_1"/>
+        <Label Content="Компонент Документа" HorizontalAlignment="Left" Height="32" Margin="73,96,0,0" VerticalAlignment="Top" Width="157"/>
+        <Label Content="Количество Документов" HorizontalAlignment="Left" Height="32" Margin="62,213,0,0" VerticalAlignment="Top" Width="157"/>
+
+    </Grid>
+</Window>

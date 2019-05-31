@@ -13,5 +13,6 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class App : Application
     {
+        
     }
 }
