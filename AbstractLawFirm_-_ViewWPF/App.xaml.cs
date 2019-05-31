@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using AbstractLawFirm___ServiceDAL.Interfaces;
+using AbstractLawFirm___ServiceImplementDatabase.Implements;
 using AbstractLawFirm___ServiceImplementList.Implementations;
 using Unity;
 
@@ -19,11 +20,11 @@ namespace AbstractLawFirm___ViewWPF
         protected override void OnStartup(StartupEventArgs e)
         {
             IUnityContainer container = new UnityContainer();
-            container.RegisterType<IMainService, MainServiceList>();
-            container.RegisterType<IArchiveService, ArchiveServiceList>();
-            container.RegisterType<IBlankService, BlankServiceList>();
-            container.RegisterType<IDocumentsService, DocumentsServiceList>();
-            container.RegisterType<ICustomerService, CustomerServiceList>();
+            container.RegisterType<IMainService, MainServiceDB>();
+            container.RegisterType<IArchiveService, ArchiveServiceDB>();
+            container.RegisterType<IBlankService, BlankServiceDB>();
+            container.RegisterType<IDocumentsService, DocumentsServiceDB>();
+            container.RegisterType<ICustomerService, CustomerServiceDB>();
             var mainWindow = container.Resolve<MainWindow>();
             Application.Current.MainWindow = mainWindow;
             Application.Current.MainWindow.Show();
