@@ -67,11 +67,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WindowAddNewArchive.xaml.cs">
+      <DependentUpon>WindowAddNewArchive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowAddNewBlank.xaml.cs">
       <DependentUpon>WindowAddNewBlank.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowAddNewCustomer.xaml.cs">
       <DependentUpon>WindowAddNewCustomer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowArchiveList.xaml.cs">
+      <DependentUpon>WindowArchiveList.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowBlankList.xaml.cs">
       <DependentUpon>WindowBlankList.xaml</DependentUpon>
@@ -91,6 +97,9 @@
     <Compile Include="WindowDocumentsList.xaml.cs">
       <DependentUpon>WindowDocumentsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowPutOnArchive.xaml.cs">
+      <DependentUpon>WindowPutOnArchive.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -103,11 +112,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="WindowAddNewArchive.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowAddNewBlank.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowAddNewCustomer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowArchiveList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowDocumentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPutOnArchive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

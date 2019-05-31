@@ -16,49 +16,39 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         public BlankServiceList()
         {
             source = DataListSingleton.GetInstance();
-        }        public List<BlankViewModel> GetList()
+        }
+        public List<BlankViewModel> GetList()
         {
-            List<BlankViewModel> result = new List<BlankViewModel>();
-            for (int i = 0; i < source.Blank.Count; ++i)
+            List<BlankViewModel> result = source.Blanks.Select(rec => new BlankViewModel
             {
-                result.Add(new BlankViewModel
-                {
-                    Id = source.Blank[i].Id,
-                    BlankName = source.Blank[i].BlankName
-                });
-            }
+                Id = rec.Id,
+                BlankName = rec.BlankName
+            }).ToList();
             return result;
         }
         public BlankViewModel GetElement(int id)
         {
-            for (int i = 0; i < source.Customer.Count; ++i)
+            Blank element = source.Blanks.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.Customer[i].Id == id)
+                return new BlankViewModel
                 {
-                    return new BlankViewModel
-                    {
-                        Id = source.Blank[i].Id,
-                        BlankName = source.Blank[i].BlankName
-                    };
-                }
+                    Id = element.Id,
+                    BlankName = element.BlankName
+                };
             }
             throw new Exception("Элемент не найден");
         }
         public void AddElement(BlankBindingModel model)
         {
-            int maxId = 0;
-            for (int i = 0; i < source.Blank.Count; ++i)
+            Blank element = source.Blanks.FirstOrDefault(rec => rec.BlankName == model.BlankName);
+            if (element != null)
             {
-                if (source.Blank[i].Id > maxId)
-                {
-                    maxId = source.Blank[i].Id;
-                }
-                if (source.Blank[i].BlankName == model.BlankName)
-                {
-                    throw new Exception("Уже есть бланк с таким названием");
-                }
+                throw new Exception("Уже есть компонент с таким названием");
             }
-            source.Blank.Add(new Blank
+            int maxId = source.Blanks.Count > 0 ? source.Blanks.Max(rec =>
+           rec.Id) : 0;
+            source.Blanks.Add(new Blank
             {
                 Id = maxId + 1,
                 BlankName = model.BlankName
@@ -66,35 +56,29 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
         }
         public void UpdElement(BlankBindingModel model)
         {
-            int index = -1;
-            for (int i = 0; i < source.Blank.Count; ++i)
+            Blank element = source.Blanks.FirstOrDefault(rec => rec.BlankName == model.BlankName && rec.Id != model.Id);
+            if (element != null)
             {
-                if (source.Customer[i].Id == model.Id)
-                {
-                    index = i;
-                }
-                if (source.Customer[i].CustomerFIO == model.BlankName &&
-                source.Customer[i].Id != model.Id)
-                {
-                    throw new Exception("Уже есть клиент с таким ФИО");
-                }
+                throw new Exception("Уже есть компонент с таким названием");
             }
-            if (index == -1)
+            element = source.Blanks.FirstOrDefault(rec => rec.Id == model.Id);
+            if (element == null)
             {
                 throw new Exception("Элемент не найден");
             }
-            source.Blank[index].BlankName = model.BlankName;
-        }        public void DelElement(int id)
+            element.BlankName = model.BlankName;
+        }
+        public void DelElement(int id)
         {
-            for (int i = 0; i < source.Blank.Count; ++i)
+            Blank element = source.Blanks.FirstOrDefault(rec => rec.Id == id);
+            if (element != null)
             {
-                if (source.Blank[i].Id == id)
-                {
-                    source.Blank.RemoveAt(i);
-                    return;
-                }
+                source.Blanks.Remove(element);
             }
-            throw new Exception("Элемент не найден");
+            else
+            {
+                throw new Exception("Элемент не найден");
+            }
         }
     }
 }

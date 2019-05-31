@@ -18,8 +18,11 @@
                 <MenuItem Header="Клиент" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="клиентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Бланки" HorizontalAlignment="Left" Height="24" Width="158" Margin="0,0,-18,0" Click="бланкиToolStripMenuItem_Click"/>
                 <MenuItem Header="Документы" HorizontalAlignment="Left" Height="28" Width="143" Margin="0,0,-1,0" Click="документыToolStripMenuItem_Click"/>
+                <MenuItem Header="Архивы" HorizontalAlignment="Left" Height="28" Width="143" Margin="0,0,-1,0" Click="архивыToolStripMenuItem_Click"/>
             </MenuItem>
         </Menu>
+        <Menu x:Name="added" HorizontalAlignment="Left" Height="27" Margin="195,0,0,0" VerticalAlignment="Top" Width="181"/>
+        <MenuItem Header="Пополнить склад" HorizontalAlignment="Left" Height="27" Margin="195,0,0,0" VerticalAlignment="Top" Width="181" Click="MenuItem_Click"/>
 
     </Grid>
 </Window>

@@ -8,8 +8,8 @@
         Title="WindowAddNewCustomer" Height="261.842" Width="450.912">
     <Grid Loaded="Grid_Loaded">
         <TextBox x:Name="textBoxName" HorizontalAlignment="Left" Height="25" Margin="68,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="304"/>
-        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="31" Margin="45,147,0,0" VerticalAlignment="Top" Width="109"/>
-        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="31" Margin="257,147,0,0" VerticalAlignment="Top" Width="134"/>
+        <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="31" Margin="45,147,0,0" VerticalAlignment="Top" Width="109" Click="buttonSave_Click"/>
+        <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="31" Margin="257,147,0,0" VerticalAlignment="Top" Width="134" Click="buttonCancel_Click"/>
         <Label Content="ФИО:" HorizontalAlignment="Left" Height="23" Margin="68,32,0,0" VerticalAlignment="Top" Width="39"/>
 
 

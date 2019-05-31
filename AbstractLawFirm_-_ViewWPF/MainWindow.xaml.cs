@@ -141,5 +141,19 @@ namespace AbstractLawFirm___ViewWPF
             var window = Container.Resolve<WindowCustomerList>();
             window.ShowDialog();
         }
+
+        private void архивыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = Container.Resolve<WindowArchiveList>();
+            form.ShowDialog();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+           
+                var form = Container.Resolve<WindowPutOnArchive>();
+                form.ShowDialog();
+            
+        }
     }
 }

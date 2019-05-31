@@ -44,7 +44,7 @@ namespace AbstractLawFirm___ViewWPF
                 List<CustomerViewModel> listC = serviceC.GetList();
                 if (listC != null)
                 {
-                    comboBoxClient.SelectedItem = "CustomerFIO";
+                    comboBoxClient.DisplayMemberPath = "CustomerFIO";
                     comboBoxClient.SelectedValuePath = "Id";
                     comboBoxClient.ItemsSource = listC;
                     comboBoxClient.SelectedItem = null;
@@ -52,9 +52,9 @@ namespace AbstractLawFirm___ViewWPF
                 List<DocumentsViewModel> listP = serviceD.GetList();
                 if (listP != null)
                 {
-                    comboBoxDocument.SelectedItem = "DocumentsName";
+                    comboBoxDocument.DisplayMemberPath = "DocumentsName";
                     comboBoxDocument.SelectedValuePath = "Id";
-                    comboBoxDocument.DataContext = listP;
+                    comboBoxDocument.ItemsSource = listP;
                     comboBoxDocument.SelectedItem = null;
                 }
             }
@@ -113,7 +113,7 @@ namespace AbstractLawFirm___ViewWPF
                     CustomerId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     DocumentsId = Convert.ToInt32(comboBoxDocument.SelectedValue),
                     Count = Convert.ToInt32(textBoxCount.Text),
-                    Sum = Convert.ToInt32(textBoxSum.Text)
+                    Sum = Convert.ToDecimal(textBoxSum.Text)
                 });
                 MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButton.OK, MessageBoxImage.Information);
                 DialogResult = true;
