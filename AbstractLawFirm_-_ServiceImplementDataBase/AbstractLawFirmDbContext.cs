@@ -10,7 +10,7 @@ namespace AbstractLawFirm___ServiceImplementDataBase
 {
     public class AbstractLawFirmDbContext : DbContext
     {
-        public AbstractLawFirmDbContext() : base("AbstractDatabase")
+        public AbstractLawFirmDbContext() : base("Abstract_lawFirm_Database")
         {
             //настройки конфигурации для entity
             Configuration.ProxyCreationEnabled = false;

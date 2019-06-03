@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractLawFirm_-_View", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractLawFirm_-_ServiceImplementDataBase", "AbstractLawFirm_-_ServiceImplementDataBase\AbstractLawFirm_-_ServiceImplementDataBase.csproj", "{BB7E0EE8-B777-4688-8911-F9076A945134}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractLawFirm_-_RestApi", "AbstractLawFirm_-_RestApi\AbstractLawFirm_-_RestApi.csproj", "{F3EFF1E4-EF8F-4165-9F80-E0FE45BFE8D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BB7E0EE8-B777-4688-8911-F9076A945134}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB7E0EE8-B777-4688-8911-F9076A945134}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB7E0EE8-B777-4688-8911-F9076A945134}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3EFF1E4-EF8F-4165-9F80-E0FE45BFE8D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3EFF1E4-EF8F-4165-9F80-E0FE45BFE8D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3EFF1E4-EF8F-4165-9F80-E0FE45BFE8D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3EFF1E4-EF8F-4165-9F80-E0FE45BFE8D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
