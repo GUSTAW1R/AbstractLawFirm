@@ -57,7 +57,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-
+            LoadData();
         }
 
         private void ButtonAddOrder_Click(object sender, RoutedEventArgs e)
@@ -154,6 +154,21 @@ namespace AbstractLawFirm___ViewWPF
                 var form = Container.Resolve<WindowPutOnArchive>();
                 form.ShowDialog();
             
+        }
+
+        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItem_Click_3(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -138,5 +138,20 @@ namespace AbstractLawFirm___View
             var form = Container.Resolve<FormAddNewBlank>();
             form.ShowDialog();
         }
+
+        private void прайсИзделийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void загруженностьАрхивовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
