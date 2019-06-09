@@ -61,7 +61,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                var dict = service.GetArchivesLoad();
+                /*var dict = service.GetArchivesLoad();
                 if (dict != null)
                 {
                     dataGridView.R;
@@ -75,7 +75,7 @@ namespace AbstractLawFirm___ViewWPF
                         dataGridView.Rows.Add(new object[] { "Итого", "", elem.TotalCount });
                         dataGridView.Rows.Add(new object[] { });
                     }
-                }
+                }*/
             }
             catch (Exception ex)
             {

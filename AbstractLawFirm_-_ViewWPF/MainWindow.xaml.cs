@@ -163,12 +163,14 @@ namespace AbstractLawFirm___ViewWPF
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowArchivesLoad>();
+            window.ShowDialog();
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-
+            var window = Container.Resolve<WindowCustomerOrder>();
+            window.ShowDialog();
         }
     }
 }
