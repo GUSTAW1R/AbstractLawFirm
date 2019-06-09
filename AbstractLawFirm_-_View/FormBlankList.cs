@@ -7,22 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormBlankList : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IBlankService service;
-        
-        public FormBlankList(IBlankService service)
+        public FormBlankList()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormClients_Load(object sender, EventArgs e)
         {
@@ -33,7 +28,7 @@ namespace AbstractLawFirm___View
         {
             try
             {
-                List<BlankViewModel> list = service.GetList();
+                List<BlankViewModel> list = APIClient.GetRequest<List<BlankViewModel>>("api/Blank/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -48,7 +43,7 @@ namespace AbstractLawFirm___View
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormAddNewBlank>();
+            var form = new FormAddNewBlank();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -58,7 +53,7 @@ namespace AbstractLawFirm___View
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormAddNewBlank>();
+                var form = new FormAddNewBlank();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -75,7 +70,7 @@ namespace AbstractLawFirm___View
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<BlankBindingModel, bool>("api/Blank/DelElement", new BlankBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

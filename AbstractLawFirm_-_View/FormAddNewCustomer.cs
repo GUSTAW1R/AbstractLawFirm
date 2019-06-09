@@ -10,22 +10,18 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
 using AbstractLawFirm___ServiceDAL.BindingModel;
-using Unity;
+
 
 namespace AbstractLawFirm___View
 {
     public partial class FormAddNewCustomer : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly ICustomerService service;
         private int? id;
 
-        public FormAddNewCustomer(ICustomerService service)
+        public FormAddNewCustomer()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormClient_Load(object sender, EventArgs e)
@@ -34,11 +30,8 @@ namespace AbstractLawFirm___View
             {
                 try
                 {
-                    CustomerViewModel view = service.GetElement(id.Value);
-                    if (view != null)
-                    {
-                        textBoxFIO.Text = view.CustomerFIO;
-                    }
+                    CustomerViewModel client = APIClient.GetRequest<CustomerViewModel>("api/Customer/Get/" + id.Value);
+                    textBoxFIO.Text = client.CustomerFIO;
                 }
                 catch (Exception ex)
                 {
@@ -57,22 +50,25 @@ namespace AbstractLawFirm___View
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new CustomerBindingModel
-                    {
-                        Id = id.Value,
-                        CustomerFIO = textBoxFIO.Text
-                    });
+                    APIClient.PostRequest<CustomerBindingModel,
+                   bool>("api/Customer/UpdElement", new CustomerBindingModel
+                   {
+                       Id = id.Value,
+                       CustomerFIO = textBoxFIO.Text
+                   });
                 }
                 else
                 {
-                    service.AddElement(new CustomerBindingModel
-                    {
-                        CustomerFIO = textBoxFIO.Text
-                    });
+                    APIClient.PostRequest<CustomerBindingModel,
+                   bool>("api/Customer/AddElement", new CustomerBindingModel
+                   {
+                       CustomerFIO = textBoxFIO.Text
+                   });
                 }
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
+               MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.OK;
-                Close();
+                Close();
             }
             catch (Exception ex)
             {

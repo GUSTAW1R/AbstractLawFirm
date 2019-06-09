@@ -7,22 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormDocumentsList : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IDocumentsService service;
-
-        public FormDocumentsList(IDocumentsService service)
+        public FormDocumentsList()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormDocumentsList_Load(object sender, EventArgs e)
@@ -34,7 +29,7 @@ namespace AbstractLawFirm___View
         {
             try
             {
-                List<DocumentsViewModel> list = service.GetList();
+                List<DocumentsViewModel> list = APIClient.GetRequest<List<DocumentsViewModel>>("api/Documents/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -49,7 +44,7 @@ namespace AbstractLawFirm___View
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormDocuments>();
+            var form = new FormDocuments();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -59,7 +54,7 @@ namespace AbstractLawFirm___View
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormDocuments>();
+                var form = new FormDocuments();
                 form.Id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -76,7 +71,7 @@ namespace AbstractLawFirm___View
                     int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<DocumentsBindingModel, bool>("api/Documents/DelElement", new DocumentsBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

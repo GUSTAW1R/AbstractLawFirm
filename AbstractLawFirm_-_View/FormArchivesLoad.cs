@@ -9,25 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
-using Unity;
+using AbstractLawFirm___ServiceDAL.ViewModel;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormArchivesLoad : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReportService service;
-        public FormArchivesLoad(IReportService service)
+        public FormArchivesLoad()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormArchivesLoad_Load(object sender, EventArgs e)
         {
             try
             {
-                var dict = service.GetArchivesLoad();
+                var dict = APIClient.GetRequest<List<ArchivesLoadViewModel>>("api/Archive/GetList");
                 if (dict != null)
                 {
                     dataGridView.Rows.Clear();
@@ -59,7 +55,7 @@ namespace AbstractLawFirm___View
             {
                 try
                 {
-                    service.SaveArchivesLoad(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveCustomerOrders", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });

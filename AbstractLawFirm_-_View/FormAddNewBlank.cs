@@ -10,21 +10,16 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormAddNewBlank : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IBlankService service;
         private int? id;
-        public FormAddNewBlank(IBlankService service)
+        public FormAddNewBlank()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormClient_Load(object sender, EventArgs e)
         {
@@ -32,7 +27,7 @@ namespace AbstractLawFirm___View
             {
                 try
                 {
-                    BlankViewModel view = service.GetElement(id.Value);
+                    BlankViewModel view = APIClient.GetRequest<BlankViewModel>("api/Blank/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxNameBlank.Text = view.BlankName;
@@ -55,16 +50,16 @@ namespace AbstractLawFirm___View
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new BlankBindingModel
-                    {
+                    APIClient.PostRequest<BlankBindingModel, bool>("api/Blank/UpdElement", new BlankBindingModel
+                   {
                         Id = id.Value,
                         BlankName = textBoxNameBlank.Text
                     });
                 }
                 else
                 {
-                    service.AddElement(new BlankBindingModel
-                    {
+                    APIClient.PostRequest<BlankBindingModel, bool>("api/Blank/AddElement", new BlankBindingModel
+                   {
                         BlankName = textBoxNameBlank.Text
                     });
                 }

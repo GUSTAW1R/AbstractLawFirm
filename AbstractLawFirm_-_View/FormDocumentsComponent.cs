@@ -9,28 +9,23 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormDocumentsComponent : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public DocumentBlankViewModel Model { set { model = value; } get { return model; } }
-        private readonly IBlankService service;
         private DocumentBlankViewModel model;
 
-        public FormDocumentsComponent(IBlankService service)
+        public FormDocumentsComponent()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormProductComponent_Load(object sender, EventArgs e)
         {
             try
             {
-                List<BlankViewModel> list = service.GetList();
+                List<BlankViewModel> list = APIClient.GetRequest<List<BlankViewModel>>("api/Blank/GetList");
                 if (list != null)
                 {
                     comboBoxDocumentsComponent.DisplayMember = "BlankName";
