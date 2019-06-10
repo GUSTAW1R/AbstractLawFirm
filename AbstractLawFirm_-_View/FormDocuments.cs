@@ -10,23 +10,18 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormDocuments : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IDocumentsService service;
         private int? id;
         private List<DocumentBlankViewModel> documentsComponent;
 
-        public FormDocuments(IDocumentsService service)
+        public FormDocuments()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormProduct_Load(object sender, EventArgs e)
         {
@@ -34,7 +29,7 @@ namespace AbstractLawFirm___View
             {
                 try
                 {
-                    DocumentsViewModel view = service.GetElement(id.Value);
+                    DocumentsViewModel view = APIClient.GetRequest<DocumentsViewModel>("api/Fabric/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.DocumentsName;
@@ -75,7 +70,7 @@ namespace AbstractLawFirm___View
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormDocumentsComponent>();
+            var form = new FormDocumentsComponent();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 if (form.Model != null)
@@ -93,7 +88,7 @@ namespace AbstractLawFirm___View
         {
             if (dataGridView.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormDocumentsComponent>();
+                var form = new FormDocumentsComponent();
                 form.Model = documentsComponent[dataGridView.SelectedRows[0].Cells[0].RowIndex];
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -156,7 +151,7 @@ namespace AbstractLawFirm___View
                 }
                 if (id.HasValue)
                 {
-                    service.UpdElement(new DocumentsBindingModel
+                    APIClient.PostRequest<DocumentsBindingModel, bool>("api/Documents/UpdElement", new DocumentsBindingModel
                     {
                         Id = id.Value,
                         DocumentsName = textBoxName.Text,
@@ -166,8 +161,8 @@ namespace AbstractLawFirm___View
                 }
                 else
                 {
-                service.AddElement(new DocumentsBindingModel
-                {
+                    APIClient.PostRequest<DocumentsBindingModel, bool>("api/Documents/AddElement", new DocumentsBindingModel
+                    {
                     DocumentsName = textBoxName.Text,
                     Price = Convert.ToInt32(textBoxPrice.Text),
                     DocumentBlank = documentsComponentBM

@@ -7,21 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormCustomerList : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ICustomerService service;
-        public FormCustomerList(ICustomerService service)
+        public FormCustomerList()
         {
             InitializeComponent();
-            this.service = service;
         }
         private void FormClients_Load(object sender, EventArgs e)
         {
@@ -32,7 +28,7 @@ namespace AbstractLawFirm___View
         {
             try
             {
-                List<CustomerViewModel> list = service.GetList();
+                List<CustomerViewModel> list = APIClient.GetRequest<List<CustomerViewModel>>("api/Customer/GetList");
                 if (list != null)
                 {
                     dataGridViewClients.DataSource = list;
@@ -47,7 +43,7 @@ namespace AbstractLawFirm___View
         }
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormAddNewCustomer>();
+            var form = new FormAddNewCustomer();
             if (form.ShowDialog() == DialogResult.OK)
             {
                 LoadData();
@@ -57,7 +53,7 @@ namespace AbstractLawFirm___View
         {
             if (dataGridViewClients.SelectedRows.Count == 1)
             {
-                var form = Container.Resolve<FormAddNewCustomer>();
+                var form = new FormAddNewCustomer();
                 form.Id = Convert.ToInt32(dataGridViewClients.SelectedRows[0].Cells[0].Value);
                 if (form.ShowDialog() == DialogResult.OK)
                 {
@@ -74,7 +70,7 @@ namespace AbstractLawFirm___View
                     int id = Convert.ToInt32(dataGridViewClients.SelectedRows[0].Cells[0].Value);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<CustomerBindingModel, bool>("api/Customer/DelElement", new CustomerBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {

@@ -11,22 +11,14 @@ using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
 using AbstractLawFirm___ServiceImplementDataBase.Implementations;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormMain : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IMainService service;
-        private readonly IReportService reportService;
-
-        public FormMain(IMainService service, IReportService reportService)
+        public FormMain()
         {
             InitializeComponent();
-            this.service = service;
-            this.reportService = reportService;
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
@@ -36,7 +28,7 @@ namespace AbstractLawFirm___View
         {
             try
             {
-                List<OrderViewModel> list = service.GetList();
+                List<OrderViewModel> list = APIClient.GetRequest<List<OrderViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                     dataGridView.DataSource = list;
@@ -54,27 +46,27 @@ namespace AbstractLawFirm___View
         }
         private void клиентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCustomerList>();
+            var form = new FormCustomerList();
             form.ShowDialog();
         }
         private void компонентыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormBlankList>();
+            var form = new FormBlankList();
             form.ShowDialog();
         }
         private void изделияToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormDocumentsList>();
+            var form = new FormDocumentsList();
             form.ShowDialog();
         }
         private void пополнениеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormPutOnArchive>();
+            var form = new FormPutOnArchive();
             form.ShowDialog();
         }
         private void архивыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormArchiveList>();
+            var form = new FormArchiveList();
             form.ShowDialog();
         }
         private void прайсДокументовToolStripMenuItem_Click(object sender, EventArgs e)
@@ -87,8 +79,8 @@ namespace AbstractLawFirm___View
             {
                 try
                 {
-                    reportService.SaveDocumentPrice(new ReportBindingModel
-                    {
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveDocumentsPrice", new ReportBindingModel
+{
                         FileName = sfd.FileName
                     });
                     MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
@@ -103,17 +95,17 @@ namespace AbstractLawFirm___View
         }
         private void загруженностьАрхивовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormArchivesLoad>();
+            var form = new FormArchivesLoad();
             form.ShowDialog();
         }
         private void заказыКлиентовToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCustomerOrders>();
+            var form = new FormCustomerOrders();
             form.ShowDialog();
         }
         private void buttonCreateOrder_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormCreatOrder>();
+            var form = new FormCreatOrder();
             form.ShowDialog();
             LoadData();
         }
@@ -124,7 +116,7 @@ namespace AbstractLawFirm___View
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.TakeOrderInWork(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/TakeOrderInWork", new OrderBindingModel{ Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -141,7 +133,7 @@ namespace AbstractLawFirm___View
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.FinishOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/FinishOrder", new OrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -157,7 +149,7 @@ namespace AbstractLawFirm___View
                 int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
                 try
                 {
-                    service.PayOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/PayOrder", new OrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -172,7 +164,7 @@ namespace AbstractLawFirm___View
         }
         private void buttonNewBlank_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<FormAddNewBlank>();
+            var form = new FormAddNewBlank();
             form.ShowDialog();
         }
     }

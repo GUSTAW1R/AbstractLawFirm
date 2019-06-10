@@ -10,29 +10,20 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormPutOnArchive : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IArchiveService serviceS;
-        private readonly IBlankService serviceC;
-        private readonly IMainService serviceM;
-        public FormPutOnArchive(IArchiveService serviceS, IBlankService serviceC, IMainService serviceM)
+        public FormPutOnArchive()
         {
             InitializeComponent();
-            this.serviceS = serviceS;
-            this.serviceC = serviceC;
-            this.serviceM = serviceM;
         }
         private void FormPutOnArchive_Load(object sender, EventArgs e)
         {
             try
             {
-                List<BlankViewModel> listC = serviceC.GetList();
+                List<BlankViewModel> listC = APIClient.GetRequest<List<BlankViewModel>>("api/Blank/GetList");
                 if (listC != null)
                 {
                     comboBoxComponents.DisplayMember = "BlankName";
@@ -40,7 +31,7 @@ namespace AbstractLawFirm___View
                     comboBoxComponents.DataSource = listC;
                     comboBoxComponents.SelectedItem = null;
                 }
-                List<ArchiveViewModel> listS = serviceS.GetList();
+                List<ArchiveViewModel> listS = APIClient.GetRequest<List<ArchiveViewModel>>("api/Archive/GetList");
                 if (listS != null)
                 {
                     comboBoxArchives.DisplayMember = "ArchiveName";
@@ -77,7 +68,7 @@ namespace AbstractLawFirm___View
             }
             try
             {
-                serviceM.PutComponentsOnArchive(new ArchiveComponentBindingModel
+                APIClient.PostRequest<ArchiveComponentBindingModel, bool>("api/Archive/AddElement", new ArchiveComponentBindingModel
                 {
                     BlankId = Convert.ToInt32(comboBoxComponents.SelectedValue),
                     ArchiveId = Convert.ToInt32(comboBoxArchives.SelectedValue),

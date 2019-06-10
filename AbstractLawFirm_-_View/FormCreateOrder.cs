@@ -10,29 +10,20 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___View
 {
     public partial class FormCreatOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ICustomerService serviceC;
-        private readonly IDocumentsService serviceD;
-        private readonly IMainService serviceM;
-        public FormCreatOrder(ICustomerService serviceC, IDocumentsService serviceD, IMainService serviceM)
+        public FormCreatOrder()
         {
             InitializeComponent();
-            this.serviceC = serviceC;
-            this.serviceD = serviceD;
-            this.serviceM = serviceM;
         }
         private void FormCreateOrder_Load(object sender, EventArgs e)
         {
             try
             {
-                List<CustomerViewModel> listC = serviceC.GetList();
+                List<CustomerViewModel> listC = APIClient.GetRequest<List<CustomerViewModel>>("api/Customer/GetList");
                 if (listC != null)
                 {
                     comboBoxClient.DisplayMember = "CustomerFIO";
@@ -40,7 +31,7 @@ namespace AbstractLawFirm___View
                     comboBoxClient.DataSource = listC;
                     comboBoxClient.SelectedItem = null;
                 }
-                List<DocumentsViewModel> listP = serviceD.GetList();
+                List<DocumentsViewModel> listP = APIClient.GetRequest<List<DocumentsViewModel>>("api/Documents/GetList");
                 if (listP != null)
                 {
                     comboBoxDocument.DisplayMember = "DocumentsName";
@@ -61,7 +52,7 @@ namespace AbstractLawFirm___View
                 try
                 {
                     int id = Convert.ToInt32(comboBoxDocument.SelectedValue);
-                    DocumentsViewModel product = serviceD.GetElement(id);
+                    DocumentsViewModel product = APIClient.GetRequest<DocumentsViewModel>("api/Documents/Get/" + id);
                     int count = Convert.ToInt32(textBoxCount.Text);
                     textBoxSum.Text = (count * product.Price).ToString();
                 }
@@ -99,7 +90,7 @@ namespace AbstractLawFirm___View
             }
             try
             {
-                serviceM.CreateOrder(new OrderBindingModel
+                APIClient.PostRequest<OrderBindingModel, bool>("api/Main/CreateOrder", new OrderBindingModel
                 {
                     CustomerId = Convert.ToInt32(comboBoxClient.SelectedValue),
                     DocumentsId = Convert.ToInt32(comboBoxDocument.SelectedValue),
