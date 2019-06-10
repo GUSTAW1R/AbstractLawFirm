@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Win32;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -27,11 +28,13 @@ namespace AbstractLawFirm___ViewWPF
         [Dependency]
         public IUnityContainer Container { get; set; }
         private readonly IMainService service;
+        private readonly IReportService reportService;
 
-        public MainWindow(IMainService service)
+        public MainWindow(IMainService service, IReportService reportService)
         {
             InitializeComponent();
             this.service = service;
+            this.reportService = reportService;
         }
 
         private void LoadData()
@@ -158,7 +161,27 @@ namespace AbstractLawFirm___ViewWPF
 
         private void MenuItem_Click_1(object sender, RoutedEventArgs e)
         {
-
+            SaveFileDialog sfd = new SaveFileDialog
+            {
+                Filter = "doc|*.doc|docx|*.docx"
+            };
+            if (sfd.ShowDialog() == true)
+            {
+                try
+                {
+                    reportService.SaveDocumentPrice(new ReportBindingModel
+                    {
+                        FileName = sfd.FileName
+                    });
+                    MessageBox.Show("Выполнено", "Успех", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButton.OK,
+                   MessageBoxImage.Error);
+                }
+            }
         }
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)

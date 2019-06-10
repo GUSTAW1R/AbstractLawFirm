@@ -66,6 +66,7 @@
             this.buttonMake.TabIndex = 3;
             this.buttonMake.Text = "Сформировать";
             this.buttonMake.UseVisualStyleBackColor = true;
+            this.buttonMake.Click += new System.EventHandler(this.buttonMake_Click);
             // 
             // buttonToPDF
             // 
@@ -75,6 +76,7 @@
             this.buttonToPDF.TabIndex = 4;
             this.buttonToPDF.Text = "В PDF";
             this.buttonToPDF.UseVisualStyleBackColor = true;
+            this.buttonToPDF.Click += new System.EventHandler(this.buttonToPdf_Click);
             // 
             // WindowCustomerOrder
             // 

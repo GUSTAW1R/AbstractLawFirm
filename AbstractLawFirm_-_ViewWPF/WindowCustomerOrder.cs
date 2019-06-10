@@ -47,7 +47,7 @@ namespace AbstractLawFirm___ViewWPF
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
                 });
-                ReportDataSource source = new ReportDataSource("DataSetOrders",
+                ReportDataSource source = new ReportDataSource("DataSet1",
                dataSource);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
