@@ -21,6 +21,11 @@ namespace AbstractLawFirm___ViewWPF
     /// <summary>
     /// Логика взаимодействия для WindowArchivesLoad.xaml
     /// </summary>
+    public class Row {
+        public String archiveName { get; set; }
+        public String blankName { get; set; }
+        public String count { get; set; }
+    }
     public partial class WindowArchivesLoad : Window
     {
         [Dependency]
@@ -61,21 +66,21 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                /*var dict = service.GetArchivesLoad();
+                var dict = service.GetArchivesLoad();
                 if (dict != null)
                 {
-                    dataGridView.R;
+                    dataGridView.Items.Clear();
                     foreach (var elem in dict)
                     {
-                        dataGridView.Rows.Add(new object[] { elem.ArchiveName, "", "" });
+                        dataGridView.Items.Add(new Row() { archiveName = elem.ArchiveName, blankName = "", count = "" });
                         foreach (var listElem in elem.Blanks)
                         {
-                            dataGridView.Rows.Add(new object[] { "", listElem.Item1, listElem.Item2 });
+                            dataGridView.Items.Add(new Row() { archiveName = "", blankName = listElem.Item1.ToString(), count = listElem.Item2.ToString()});
                         }
-                        dataGridView.Rows.Add(new object[] { "Итого", "", elem.TotalCount });
-                        dataGridView.Rows.Add(new object[] { });
+                        dataGridView.Items.Add(new Row() { archiveName = "Итого: ", blankName = "", count = elem.TotalCount.ToString() });
+                        dataGridView.Items.Add(new Row() { archiveName = "", blankName = "", count = "" });
                     }
-                }*/
+                }
             }
             catch (Exception ex)
             {

@@ -89,7 +89,7 @@
             this.Controls.Add(this.dateTimePickerFrom);
             this.Controls.Add(this.reportViewer);
             this.Name = "WindowCustomerOrder";
-            this.Text = "Form1";
+            this.Text = "WindowCustomerOrder";
             this.Load += new System.EventHandler(this.FormCustomerOrder_Load);
             this.ResumeLayout(false);
 

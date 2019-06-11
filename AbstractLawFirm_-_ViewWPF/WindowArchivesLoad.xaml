@@ -9,9 +9,9 @@
     <Grid Loaded="Grid_Loaded">
         <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="446" Margin="10,41,0,0" VerticalAlignment="Top" Width="356">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="Archive" Width="120"/>
-                <DataGridTextColumn x:Name="Blank" Width="120"/>
-                <DataGridTextColumn x:Name="Count" Width="120"/>
+                <DataGridTextColumn x:Name="Archive" Binding="{Binding archiveName}" Width="120"/>
+                <DataGridTextColumn x:Name="Blank" Binding="{Binding blankName}" ClipboardContentBinding="{x:Null}" Width="120"/>
+                <DataGridTextColumn x:Name="Count" Binding="{Binding count}" Width="120"/>
             </DataGrid.Columns>
             
         </DataGrid>
