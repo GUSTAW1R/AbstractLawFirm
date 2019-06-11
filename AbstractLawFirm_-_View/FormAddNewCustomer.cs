@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
 using AbstractLawFirm___ServiceDAL.BindingModel;
-
+using System.Text.RegularExpressions;
 
 namespace AbstractLawFirm___View
 {
@@ -24,7 +24,7 @@ namespace AbstractLawFirm___View
             InitializeComponent();
         }
 
-        private void FormClient_Load(object sender, EventArgs e)
+        private void FormCustomer_Load(object sender, EventArgs e)
         {
             if (id.HasValue)
             {
@@ -32,6 +32,11 @@ namespace AbstractLawFirm___View
                 {
                     CustomerViewModel client = APIClient.GetRequest<CustomerViewModel>("api/Customer/Get/" + id.Value);
                     textBoxFIO.Text = client.CustomerFIO;
+                    textBoxMail.Text = client.Mail;
+                    dataGridView.DataSource = client.Messages;
+                    dataGridView.Columns[0].Visible = false;
+                    dataGridView.Columns[1].Visible = false;
+                    dataGridView.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
                 }
                 catch (Exception ex)
                 {
@@ -43,37 +48,46 @@ namespace AbstractLawFirm___View
         {
             if (string.IsNullOrEmpty(textBoxFIO.Text))
             {
-                MessageBox.Show("Заполните ФИО", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Заполните ФИО", "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
                 return;
             }
-            try
+
+            string fio = textBoxFIO.Text;
+            string mail = textBoxMail.Text;
+            if (!string.IsNullOrEmpty(mail))
             {
-                if (id.HasValue)
+                if (Regex.IsMatch(mail, @"^(?("")(""[^""]+?""@)|(([0-9a-z]((\.(?!\.))|[-
+!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9a-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9az][-\w]*[0-9a-z]*\.)+[a-z0-9]{2,17}))$"))
                 {
-                    APIClient.PostRequest<CustomerBindingModel,
-                   bool>("api/Customer/UpdElement", new CustomerBindingModel
-                   {
-                       Id = id.Value,
-                       CustomerFIO = textBoxFIO.Text
-                   });
+                    MessageBox.Show("Неверный формат для электронной почты", "Ошибка",
+                   MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
-                else
-                {
-                    APIClient.PostRequest<CustomerBindingModel,
-                   bool>("api/Customer/AddElement", new CustomerBindingModel
-                   {
-                       CustomerFIO = textBoxFIO.Text
-                   });
-                }
-                MessageBox.Show("Сохранение прошло успешно", "Сообщение",
-               MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK;
-                Close();
             }
-            catch (Exception ex)
+            if (id.HasValue)
             {
-                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                APIClient.PostRequest<CustomerBindingModel,
+               bool>("api/Customer/UpdElement", new CustomerBindingModel
+               {
+                   Id = id.Value,
+                   CustomerFIO = fio,
+                   Mail = mail
+               });
             }
+            else
+            {
+                APIClient.PostRequest<CustomerBindingModel,
+               bool>("api/Customer/AddElement", new CustomerBindingModel
+               {
+                   CustomerFIO = fio,
+                   Mail = mail
+               });
+            }
+            MessageBox.Show("Сохранение прошло успешно", "Сообщение",
+           MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult = DialogResult.OK;
+            Close();
         }
         private void buttonCancel_Click(object sender, EventArgs e)
         {

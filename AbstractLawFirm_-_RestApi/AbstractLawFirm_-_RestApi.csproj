@@ -117,6 +117,8 @@
     <Compile Include="Controllers\DocumentsController.cs" />
     <Compile Include="Controllers\ImplementerController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MessageInfoBindingModel.cs" />
+    <Compile Include="Controllers\MessageInfoController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
