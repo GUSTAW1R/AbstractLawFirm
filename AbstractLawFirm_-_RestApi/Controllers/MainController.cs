@@ -69,5 +69,16 @@ namespace AbstractLawFirm___RestApi.Controllers
                 new WorkImplementer(_service, _serviceImplementer, impl.Id, order.Id);
             }
         }
+        [HttpGet]
+        public IHttpActionResult GetInfo()
+        {
+            ReflectionService service = new ReflectionService();
+            var list = service.GetInfoByAssembly();
+            if (list == null)
+            {
+                InternalServerError(new Exception("Нет данных"));
+            }
+            return Ok(list);
+        }
     }
 }

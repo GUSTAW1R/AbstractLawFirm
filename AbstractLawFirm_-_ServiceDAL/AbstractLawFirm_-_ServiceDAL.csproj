@@ -49,6 +49,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\CustomInterfaceAttribute.cs" />
+    <Compile Include="Attributes\CustomMethodAttribute.cs" />
     <Compile Include="BindingModel\ArchiveBindingModel.cs" />
     <Compile Include="BindingModel\ArchiveComponentBindingModel.cs" />
     <Compile Include="BindingModel\BlankBindingModel.cs" />
@@ -90,5 +92,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
