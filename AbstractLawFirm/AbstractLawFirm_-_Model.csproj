@@ -52,6 +52,7 @@
     <Compile Include="ArchiveComponent.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Blank.cs" />
+    <Compile Include="Executor.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderStatus.cs" />
     <Compile Include="Documents.cs" />

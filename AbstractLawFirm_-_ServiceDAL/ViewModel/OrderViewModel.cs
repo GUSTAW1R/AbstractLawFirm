@@ -21,6 +21,10 @@ namespace AbstractLawFirm___ServiceDAL.ViewModel
         [DataMember]
         public string DocumentsName { get; set; }
         [DataMember]
+        public int? ExecutorId { get; set; }
+        [DataMember]
+        public string ExecutorName { get; set; }
+        [DataMember]
         public int Count { get; set; }
         [DataMember]
         public decimal Sum { get; set; }
