@@ -17,12 +17,19 @@
             <MenuItem Header="Справочник" Height="22" Width="137">
                 <MenuItem Header="Клиент" HorizontalAlignment="Left" Height="28" Width="135" Margin="0,0,-21,0" Click="клиентыToolStripMenuItem_Click"/>
                 <MenuItem Header="Бланки" HorizontalAlignment="Left" Height="24" Width="158" Margin="0,0,-18,0" Click="бланкиToolStripMenuItem_Click"/>
-                <MenuItem Header="Документы" HorizontalAlignment="Left" Height="28" Width="143" Margin="0,0,-1,0" Click="документыToolStripMenuItem_Click"/>
+                <MenuItem Header="Документы" HorizontalAlignment="Left" Height="28" Width="150" Margin="0,0,-1,0" Click="документыToolStripMenuItem_Click"/>
                 <MenuItem Header="Архивы" HorizontalAlignment="Left" Height="28" Width="143" Margin="0,0,-1,0" Click="архивыToolStripMenuItem_Click"/>
             </MenuItem>
         </Menu>
         <Menu x:Name="added" HorizontalAlignment="Left" Height="27" Margin="195,0,0,0" VerticalAlignment="Top" Width="181"/>
         <MenuItem Header="Пополнить склад" HorizontalAlignment="Left" Height="27" Margin="195,0,0,0" VerticalAlignment="Top" Width="181" Click="MenuItem_Click"/>
+        <Menu x:Name="report" HorizontalAlignment="Left" Height="27" Margin="404,0,0,0" VerticalAlignment="Top" Width="207">
+            <MenuItem Header="Отчётность" Height="22" Width="137">
+                <MenuItem Header="Прайс документов" HorizontalAlignment="Left" Height="28" Width="175" Margin="0,0,-21,0" Click="MenuItem_Click_1"/>
+                <MenuItem Header="Загруженность архивов" HorizontalAlignment="Left" Height="24" Width="217" Margin="0,0,-18,0" Click="MenuItem_Click_2"/>
+                <MenuItem Header="Заказы клиентов" HorizontalAlignment="Left" Height="28" Width="183" Margin="0,0,-1,0" Click="MenuItem_Click_3"/>
+            </MenuItem>
+        </Menu>
 
     </Grid>
 </Window>

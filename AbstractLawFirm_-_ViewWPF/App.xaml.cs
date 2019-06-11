@@ -25,6 +25,7 @@ namespace AbstractLawFirm___ViewWPF
             container.RegisterType<IBlankService, BlankServiceDB>();
             container.RegisterType<IDocumentsService, DocumentsServiceDB>();
             container.RegisterType<ICustomerService, CustomerServiceDB>();
+            container.RegisterType<IReportService, ReportServiceDB>();
             var mainWindow = container.Resolve<MainWindow>();
             Application.Current.MainWindow = mainWindow;
             Application.Current.MainWindow.Show();
