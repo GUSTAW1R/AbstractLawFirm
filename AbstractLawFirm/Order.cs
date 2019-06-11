@@ -18,5 +18,6 @@ namespace AbstractLawFirm
         public DateTime? DateImplement { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Documents Documents { get; set; }
+        public virtual Implementer Implementer { get; set; }
     }
 }
