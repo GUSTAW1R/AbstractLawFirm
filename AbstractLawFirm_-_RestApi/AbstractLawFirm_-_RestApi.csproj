@@ -146,6 +146,10 @@
       <Project>{d40f12d2-a117-461f-8dbb-0b44228a37fb}</Project>
       <Name>AbstractLawFirm_-_ServiceDAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AbstractLawFirm_-_ServiceImplementDataBase\AbstractLawFirm_-_ServiceImplementDataBase.csproj">
+      <Project>{BB7E0EE8-B777-4688-8911-F9076A945134}</Project>
+      <Name>AbstractLawFirm_-_ServiceImplementDataBase</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

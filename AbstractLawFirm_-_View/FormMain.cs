@@ -8,9 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
-using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using AbstractLawFirm___ServiceImplementDataBase.Implementations;
 
 namespace AbstractLawFirm___View
 {
@@ -109,39 +107,7 @@ namespace AbstractLawFirm___View
             form.ShowDialog();
             LoadData();
         }
-        private void buttonTakeOrderInWork_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/TakeOrderInWork", new OrderBindingModel{ Id = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void buttonOrderReady_Click(object sender, EventArgs e)
-        {
-            if (dataGridView.SelectedRows.Count == 1)
-            {
-                int id = Convert.ToInt32(dataGridView.SelectedRows[0].Cells[0].Value);
-                try
-                {
-                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/FinishOrder", new OrderBindingModel { Id = id });
-                    LoadData();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
+        
         private void buttonPayOrder_Click(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 1)
@@ -165,6 +131,27 @@ namespace AbstractLawFirm___View
         private void buttonNewBlank_Click(object sender, EventArgs e)
         {
             var form = new FormAddNewBlank();
+            form.ShowDialog();
+        }
+
+        private void запускРаботToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                APIClient.PostRequest<int?, bool>("api/Main/StartWork", null);
+                MessageBox.Show("Выполнено", "Успех", MessageBoxButtons.OK,
+               MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка", MessageBoxButtons.OK,
+               MessageBoxIcon.Error);
+            }
+        }
+
+        private void сотрудкикиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormImplementerList();
             form.ShowDialog();
         }
     }
