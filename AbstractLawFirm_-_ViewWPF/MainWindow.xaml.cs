@@ -16,7 +16,7 @@ using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
+
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -25,23 +25,16 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        [Dependency]
-        public IUnityContainer Container { get; set; }
-        private readonly IMainService service;
-        private readonly IReportService reportService;
-
-        public MainWindow(IMainService service, IReportService reportService)
+        public MainWindow()
         {
             InitializeComponent();
-            this.service = service;
-            this.reportService = reportService;
         }
 
         private void LoadData()
         {
             try
             {
-                List<OrderViewModel> list = service.GetList();
+                List<OrderViewModel> list = APIClient.GetRequest<List<OrderViewModel>>("api/Main/GetList");
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -65,7 +58,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonAddOrder_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowCreateOrder>();
+            var window = new WindowCreateOrder();
             window.ShowDialog();
             LoadData();
         }
@@ -77,7 +70,7 @@ namespace AbstractLawFirm___ViewWPF
                 int id = ((OrderViewModel)dataGridView.SelectedItem).Id;
                 try
                 {
-                    service.TakeOrderInWork(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/TakeOrderInWork", new OrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -94,7 +87,7 @@ namespace AbstractLawFirm___ViewWPF
                 int id = ((OrderViewModel)dataGridView.SelectedItem).Id;
                 try
                 {
-                    service.FinishOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/FinishOrder", new OrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -111,7 +104,7 @@ namespace AbstractLawFirm___ViewWPF
                 int id = ((OrderViewModel)dataGridView.SelectedItem).Id;
                 try
                 {
-                    service.PayOrder(new OrderBindingModel { Id = id });
+                    APIClient.PostRequest<OrderBindingModel, bool>("api/Main/PayOrder", new OrderBindingModel { Id = id });
                     LoadData();
                 }
                 catch (Exception ex)
@@ -129,32 +122,32 @@ namespace AbstractLawFirm___ViewWPF
 
         private void бланкиToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowBlankList>();
+            var window = new WindowBlankList();
             window.ShowDialog();
         }
 
         private void документыToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowDocumentsList>();
+            var window = new WindowDocumentsList();
             window.ShowDialog();
         }
 
         private void клиентыToolStripMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowCustomerList>();
+            var window = new WindowCustomerList();
             window.ShowDialog();
         }
 
         private void архивыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var form = Container.Resolve<WindowArchiveList>();
+            var form = new WindowArchiveList();
             form.ShowDialog();
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
            
-                var form = Container.Resolve<WindowPutOnArchive>();
+                var form = new WindowPutOnArchive();
                 form.ShowDialog();
             
         }
@@ -169,7 +162,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    reportService.SaveDocumentPrice(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveDocumentsPrice", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -186,13 +179,13 @@ namespace AbstractLawFirm___ViewWPF
 
         private void MenuItem_Click_2(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowArchivesLoad>();
+            var window = new WindowArchivesLoad();
             window.ShowDialog();
         }
 
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowCustomerOrder>();
+            var window = new WindowCustomerOrder();
             window.ShowDialog();
         }
     }

@@ -9,21 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
+using AbstractLawFirm___ServiceDAL.ViewModel;
 using Microsoft.Reporting.WinForms;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
     public partial class WindowCustomerOrder : Form
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReportService service;
 
-        public WindowCustomerOrder(IReportService service)
+        public WindowCustomerOrder()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void buttonMake_Click(object sender, EventArgs e)
@@ -42,13 +38,13 @@ namespace AbstractLawFirm___ViewWPF
                 " по " +
                dateTimePickerTo.Value.ToShortDateString());
                 reportViewer.LocalReport.SetParameters(parameter);
-                var dataSource = service.GetCustomerOrders(new ReportBindingModel
+                List<CustomerOrdersViewModel> response = APIClient.PostRequest<ReportBindingModel, List<CustomerOrdersViewModel>>("api/Report/GetCustomerOrders", new ReportBindingModel
                 {
                     DateFrom = dateTimePickerFrom.Value,
                     DateTo = dateTimePickerTo.Value
                 });
                 ReportDataSource source = new ReportDataSource("DataSet1",
-               dataSource);
+               response);
                 reportViewer.LocalReport.DataSources.Add(source);
                 reportViewer.RefreshReport();
             }
@@ -74,7 +70,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    service.SaveCustomerOrders(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveCustomerOrders", new ReportBindingModel
                     {
                         FileName = sfd.FileName,
                         DateFrom = dateTimePickerFrom.Value,

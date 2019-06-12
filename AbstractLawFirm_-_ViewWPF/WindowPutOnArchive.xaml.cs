@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -23,18 +22,10 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowPutOnArchive : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IArchiveService serviceS;
-        private readonly IBlankService serviceC;
-        private readonly IMainService serviceM;
 
-        public WindowPutOnArchive(IArchiveService serviceS, IBlankService serviceC, IMainService serviceM)
+        public WindowPutOnArchive()
         {
             InitializeComponent();
-            this.serviceC = serviceC;
-            this.serviceS = serviceS;
-            this.serviceM = serviceM;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -59,7 +50,7 @@ namespace AbstractLawFirm___ViewWPF
             }
             try
             {
-                serviceM.PutComponentsOnArchive(new ArchiveComponentBindingModel
+                APIClient.PostRequest<ArchiveComponentBindingModel, bool>("api/Main/PutComponentOnStock", new ArchiveComponentBindingModel
                 {
                     BlankId = Convert.ToInt32(comboBoxBlank.SelectedValue),
                     ArchiveId = Convert.ToInt32(comboBoxArchive.SelectedValue),
@@ -81,7 +72,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                List<BlankViewModel> listC = serviceC.GetList();
+                List<BlankViewModel> listC = APIClient.GetRequest<List<BlankViewModel>>("api/Blank/GetList");
                 if (listC != null)
                 {
                     comboBoxBlank.DisplayMemberPath = "BlankName";
@@ -89,7 +80,7 @@ namespace AbstractLawFirm___ViewWPF
                     comboBoxBlank.ItemsSource = listC;
                     comboBoxBlank.SelectedItem = null;
                 }
-                List<ArchiveViewModel> listS = serviceS.GetList();
+                List<ArchiveViewModel> listS = APIClient.GetRequest<List<ArchiveViewModel>>("api/Archive/GetList");
                 if (listS != null)
                 {
                     comboBoxArchive.DisplayMemberPath = "ArchiveName";

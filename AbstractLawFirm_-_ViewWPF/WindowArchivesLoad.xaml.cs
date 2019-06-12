@@ -13,8 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
+using AbstractLawFirm___ServiceDAL.ViewModel;
 using Microsoft.Win32;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -28,13 +28,9 @@ namespace AbstractLawFirm___ViewWPF
     }
     public partial class WindowArchivesLoad : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IReportService service;
-        public WindowArchivesLoad(IReportService service)
+        public WindowArchivesLoad()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void ButtonSaveToExcel_Click(object sender, RoutedEventArgs e)
@@ -47,7 +43,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    service.SaveArchivesLoad(new ReportBindingModel
+                    APIClient.PostRequest<ReportBindingModel, bool>("api/Report/SaveStoksLoad", new ReportBindingModel
                     {
                         FileName = sfd.FileName
                     });
@@ -66,7 +62,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                var dict = service.GetArchivesLoad();
+                List<ArchiveLoadViewModel> dict = APIClient.GetRequest<List<ArchiveLoadViewModel>>("api/Archive/GetList");
                 if (dict != null)
                 {
                     dataGridView.Items.Clear();

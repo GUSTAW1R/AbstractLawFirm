@@ -11,9 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -22,21 +22,17 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowCustomerList : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly ICustomerService service;
 
-        public WindowCustomerList(ICustomerService service)
+        public WindowCustomerList()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void LoadData()
         {
             try
             {
-                List<CustomerViewModel> list = service.GetList();
+                List<CustomerViewModel> list = APIClient.GetRequest<List<CustomerViewModel>>("api/Customer/GetList");
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -52,7 +48,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowAddNewCustomer>();
+            var window = new WindowAddNewCustomer();
             if (window.ShowDialog() == true)
             {
                 LoadData();
@@ -73,7 +69,7 @@ namespace AbstractLawFirm___ViewWPF
                     int id = ((CustomerViewModel)dataGridView.SelectedItem).Id;
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<CustomerBindingModel, bool>("api/Customer/DelElement", new CustomerBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -88,7 +84,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             if (dataGridView.SelectedItems.Count == 1)
             {
-                var form = Container.Resolve<WindowAddNewCustomer>();
+                var form = new WindowAddNewCustomer();
                 form.Id = ((CustomerViewModel)dataGridView.SelectedItem).Id;
                 if (form.ShowDialog() == true)
                 {
