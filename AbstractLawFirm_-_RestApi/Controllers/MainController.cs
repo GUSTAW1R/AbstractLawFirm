@@ -4,17 +4,21 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AbstractLawFirm___RestApi.Service;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
+using AbstractLawFirm___ServiceDAL.ViewModel;
 
 namespace AbstractLawFirm___RestApi.Controllers
 {
     public class MainController : ApiController
     {
         private readonly IMainService _service;
-        public MainController(IMainService service)
+        private readonly IImplementerService _serviceImplementer;
+        public MainController(IMainService service, IImplementerService serviceImplementer)
         {
             _service = service;
+            _serviceImplementer = serviceImplementer;
         }
         [HttpGet]
         public IHttpActionResult GetList()
@@ -50,6 +54,20 @@ namespace AbstractLawFirm___RestApi.Controllers
         public void PutComponentOnStock(ArchiveComponentBindingModel model)
         {
             _service.PutComponentsOnArchive(model);
+        }
+        [HttpPost]
+        public void StartWork()
+        {
+            List<OrderViewModel> orders = _service.GetFreeOrders();
+            foreach (var order in orders)
+            {
+                ImplementerViewModel impl = _serviceImplementer.GetFreeWorker();
+                if (impl == null)
+                {
+                    throw new Exception("Нет сотрудников");
+                }
+                new WorkImplementer(_service, _serviceImplementer, impl.Id, order.Id);
+            }
         }
     }
 }

@@ -64,6 +64,7 @@
     <Compile Include="Implementations\BlankServiceDB.cs" />
     <Compile Include="Implementations\CustomerServiceDB.cs" />
     <Compile Include="Implementations\DocumentsServiceDB.cs" />
+    <Compile Include="Implementations\ImplementerServiceDB.cs" />
     <Compile Include="Implementations\MainServiceDB.cs" />
     <Compile Include="Implementations\ReportServiceDB.cs" />
     <Compile Include="Migrations\201903130851391_FirstMigration.cs" />

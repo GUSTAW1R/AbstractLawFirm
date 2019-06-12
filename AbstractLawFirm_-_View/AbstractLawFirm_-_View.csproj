@@ -100,6 +100,12 @@
     <Compile Include="FormAddNewBlank.Designer.cs">
       <DependentUpon>FormAddNewBlank.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormAddNewImplementer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAddNewImplementer.Designer.cs">
+      <DependentUpon>FormAddNewImplementer.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormArchiveList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,12 @@
     </Compile>
     <Compile Include="FormDocumentsList.Designer.cs">
       <DependentUpon>FormDocumentsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormImplementerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormImplementerList.Designer.cs">
+      <DependentUpon>FormImplementerList.cs</DependentUpon>
     </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
@@ -253,10 +265,6 @@
     <ProjectReference Include="..\AbstractLawFirm_-_ServiceDAL\AbstractLawFirm_-_ServiceDAL.csproj">
       <Project>{d40f12d2-a117-461f-8dbb-0b44228a37fb}</Project>
       <Name>AbstractLawFirm_-_ServiceDAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AbstractLawFirm_-_ServiceImplementDataBase\AbstractLawFirm_-_ServiceImplementDataBase.csproj">
-      <Project>{BB7E0EE8-B777-4688-8911-F9076A945134}</Project>
-      <Name>AbstractLawFirm_-_ServiceImplementDataBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\AbstractLawFirm_-_ServiceImplementList\AbstractLawFirm_-_ServiceImplementList.csproj">
       <Project>{36afa1fe-561c-4211-aa44-4b7f6b4364c2}</Project>

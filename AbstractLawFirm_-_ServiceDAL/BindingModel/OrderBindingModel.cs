@@ -17,6 +17,8 @@ namespace AbstractLawFirm___ServiceDAL.BindingModel
         [DataMember]
         public int DocumentsId { get; set; }
         [DataMember]
+        public int? ImplementerId { get; set; }
+        [DataMember]
         public int Count { get; set; }
         [DataMember]
         public decimal Sum { get; set; }

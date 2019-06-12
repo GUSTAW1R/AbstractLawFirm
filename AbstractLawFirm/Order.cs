@@ -11,6 +11,7 @@ namespace AbstractLawFirm
         public int Id { get; set; }
         public int CustomerId { get; set; }
         public int DocumentsId { get; set; }
+        public int? ImplementerId { get; set; }
         public int Count { get; set; }
         public decimal Sum { get; set; }
         public OrderStatus Status { get; set; }
@@ -18,5 +19,6 @@ namespace AbstractLawFirm
         public DateTime? DateImplement { get; set; }
         public virtual Customer Customer { get; set; }
         public virtual Documents Documents { get; set; }
+        public virtual Implementer Implementer { get; set; }
     }
 }

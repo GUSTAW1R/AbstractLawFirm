@@ -54,6 +54,7 @@
     <Compile Include="BindingModel\BlankBindingModel.cs" />
     <Compile Include="BindingModel\CustomerBindingModel.cs" />
     <Compile Include="BindingModel\DocumentBlankBindingModel.cs" />
+    <Compile Include="BindingModel\ImplementerBindingModel.cs" />
     <Compile Include="BindingModel\OrderBindingModel.cs" />
     <Compile Include="BindingModel\DocumentsBindingModel.cs" />
     <Compile Include="BindingModel\ReportBindingModel.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Interfaces\IBlankService.cs" />
     <Compile Include="Interfaces\ICustomerService.cs" />
     <Compile Include="Interfaces\IDocumentsService.cs" />
+    <Compile Include="Interfaces\IImplementerService.cs" />
     <Compile Include="Interfaces\IMainService.cs" />
     <Compile Include="Interfaces\IReportService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="ViewModel\CustomerViewModel.cs" />
     <Compile Include="ViewModel\DocumentBlankViewModel.cs" />
     <Compile Include="ViewModel\DocumentsViewModel.cs" />
+    <Compile Include="ViewModel\ImplementerViewModel.cs" />
     <Compile Include="ViewModel\OrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

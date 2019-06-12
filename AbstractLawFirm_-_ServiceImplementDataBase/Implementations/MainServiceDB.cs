@@ -41,7 +41,9 @@ namespace AbstractLawFirm___ServiceImplementDataBase.Implementations
                 Count = rec.Count,
                 Sum = rec.Sum,
                 CustomerFIO = rec.Customer.CustomerFIO,
-                DocumentsName = rec.Documents.DocumentsName
+                DocumentsName = rec.Documents.DocumentsName,
+                ImplementerId = rec.Implementer.Id,
+                ImplementerName = rec.Implementer.ImplementerFIO
             })
             .ToList();
             return result;
@@ -106,6 +108,7 @@ namespace AbstractLawFirm___ServiceImplementDataBase.Implementations
                     }
                     element.DateImplement = DateTime.Now;
                     element.Status = OrderStatus.Выполняется;
+                    element.ImplementerId = model.ImplementerId;
                     context.SaveChanges();
                     transaction.Commit();
                 }
@@ -144,6 +147,19 @@ namespace AbstractLawFirm___ServiceImplementDataBase.Implementations
             element.Status = OrderStatus.Оплачен;
             context.SaveChanges();
         }
+        public List<OrderViewModel> GetFreeOrders()
+        {
+            List<OrderViewModel> result = context.Orders
+            .Where(x => x.Status == OrderStatus.Принят || x.Status ==
+           OrderStatus.НедостаточноРесурсов)
+            .Select(rec => new OrderViewModel
+            {
+                Id = rec.Id
+            })
+            .ToList();
+            return result;
+        }
+
         public void PutComponentsOnArchive(ArchiveComponentBindingModel model)
         {
             ArchiveComponent element = context.ArchiveComponents.FirstOrDefault(rec =>
