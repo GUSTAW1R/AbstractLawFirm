@@ -11,9 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -22,14 +22,9 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowArchiveList : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IArchiveService service;
-
-        public WindowArchiveList(IArchiveService service)
+        public WindowArchiveList()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +36,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                List<ArchiveViewModel> list = service.GetList();
+                List<ArchiveViewModel> list = APIClient.GetRequest<List<ArchiveViewModel>>("api/Archive/GetList");
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -57,7 +52,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var form = Container.Resolve<WindowAddNewArchive>();
+            var form = new WindowAddNewArchive();
             if (form.ShowDialog() == true)
             {
                 LoadData();
@@ -78,7 +73,7 @@ namespace AbstractLawFirm___ViewWPF
                     int id = Convert.ToInt32(dataGridView.SelectedItems);
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<ArchiveBindingModel, bool>("api/Documents/DelElement", new ArchiveBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -93,7 +88,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             if (dataGridView.SelectedItems != null)
             {
-                var form = Container.Resolve<WindowAddNewArchive>();
+                var form = new WindowAddNewArchive();
                 form.Id = Convert.ToInt32(dataGridView.SelectedItems);
                 if (form.ShowDialog() == true)
                 {

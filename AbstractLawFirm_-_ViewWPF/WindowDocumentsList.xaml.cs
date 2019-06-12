@@ -11,9 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -22,14 +22,10 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowDocumentsList : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IDocumentsService service;
 
-        public WindowDocumentsList(IDocumentsService service)
+        public WindowDocumentsList()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +37,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                List<DocumentsViewModel> list = service.GetList();
+                List<DocumentsViewModel> list = APIClient.GetRequest<List<DocumentsViewModel>>("api/Documents/GetList");
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -57,7 +53,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowDocuments>();
+            var window = new WindowDocuments();
             if (window.ShowDialog() == true)
             {
                 LoadData();
@@ -78,7 +74,7 @@ namespace AbstractLawFirm___ViewWPF
                     int id = ((DocumentsViewModel)dataGridView.SelectedItem).Id;
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<DocumentsBindingModel, bool>("api/Documents/DelElement", new DocumentsBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -93,7 +89,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             if (dataGridView.SelectedItems.Count == 1)
             {
-                var form = Container.Resolve<WindowDocuments>();
+                var form = new WindowDocuments();
                 form.Id = ((DocumentsViewModel)dataGridView.SelectedItem).Id;
                 if (form.ShowDialog() == true)
                 {

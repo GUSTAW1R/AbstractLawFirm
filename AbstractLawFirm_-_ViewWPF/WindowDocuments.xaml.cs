@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -23,22 +22,18 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowDocuments : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IDocumentsService service;
         private int? id;
         private List<DocumentBlankViewModel> documentsComponent;
 
-        public WindowDocuments(IDocumentsService service)
+        public WindowDocuments()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowDocumentsComponent>();
+            var window = new WindowDocumentsComponent();
             if (window.ShowDialog() == true)
             {
                 if (window.Model != null)
@@ -64,7 +59,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    DocumentsViewModel view = service.GetElement(id.Value);
+                    DocumentsViewModel view = APIClient.GetRequest<DocumentsViewModel>("api/Documents/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.DocumentsName;
@@ -127,7 +122,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             if (dateGridView.SelectedItems.Count == 1)
             {
-                var window = Container.Resolve<WindowDocumentsComponent>();
+                var window = new WindowDocumentsComponent();
                 window.Model = documentsComponent[dateGridView.SelectedIndex];
                 if (window.ShowDialog() == true)
                 {
@@ -169,7 +164,7 @@ namespace AbstractLawFirm___ViewWPF
                 }
                 if (id.HasValue)
                 {
-                    service.UpdElement(new DocumentsBindingModel
+                    APIClient.PostRequest<DocumentsBindingModel, bool>("api/Documents/UpdElement", new DocumentsBindingModel
                     {
                         Id = id.Value,
                         DocumentsName = textBoxName.Text,
@@ -179,7 +174,7 @@ namespace AbstractLawFirm___ViewWPF
                 }
                 else
                 {
-                    service.AddElement(new DocumentsBindingModel
+                    APIClient.PostRequest<DocumentsBindingModel, bool>("api/Documents/AddElement", new DocumentsBindingModel
                     {
                         DocumentsName = textBoxName.Text,
                         Price = Convert.ToInt32(textBoxSum.Text),

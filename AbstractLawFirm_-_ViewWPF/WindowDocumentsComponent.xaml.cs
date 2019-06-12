@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
+
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -22,16 +22,12 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowDocumentsComponent : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public DocumentBlankViewModel Model { set { model = value; } get { return model; } }
-        private readonly IBlankService service;
         private DocumentBlankViewModel model;
 
-        public WindowDocumentsComponent(IBlankService service)
+        public WindowDocumentsComponent()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -75,7 +71,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             try
             {
-                List<BlankViewModel> list = service.GetList();
+                List<BlankViewModel> list = APIClient.GetRequest<List<BlankViewModel>>("api/Blank/GetList");
                 if (list != null)
                 {
                     comboBoxDocumentsComponent.DisplayMemberPath = "BlankName";

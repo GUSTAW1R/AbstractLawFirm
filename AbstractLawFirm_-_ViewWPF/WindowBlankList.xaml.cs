@@ -11,9 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
+
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -22,21 +23,17 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowBlankList : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
-        private readonly IBlankService service;
 
-        public WindowBlankList(IBlankService service)
+        public WindowBlankList()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void LoadData()
         {
             try
             {
-                List<BlankViewModel> list = service.GetList();
+                List<BlankViewModel> list = APIClient.GetRequest<List<BlankViewModel>>("api/Blank/GetList");
                 if (list != null)
                 {
                     dataGridView.ItemsSource = list;
@@ -52,7 +49,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            var window = Container.Resolve<WindowAddNewBlank>();
+            var window = new WindowAddNewBlank();
             if (window.ShowDialog() == true)
             {
                 LoadData();
@@ -73,7 +70,7 @@ namespace AbstractLawFirm___ViewWPF
                     int id = ((BlankViewModel)dataGridView.SelectedItem).Id;
                     try
                     {
-                        service.DelElement(id);
+                        APIClient.PostRequest<BlankBindingModel, bool>("api/Blank/DelElement", new BlankBindingModel { Id = id });
                     }
                     catch (Exception ex)
                     {
@@ -88,7 +85,7 @@ namespace AbstractLawFirm___ViewWPF
         {
             if (dataGridView.SelectedItems.Count == 1)
             {
-                var form = Container.Resolve<WindowAddNewBlank>();
+                var form = new WindowAddNewBlank();
                 form.Id = ((BlankViewModel)dataGridView.SelectedItem).Id;
                 if (form.ShowDialog() == true)
                 {

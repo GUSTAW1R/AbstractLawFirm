@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
+
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -23,16 +23,12 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowAddNewArchive : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IArchiveService service;
         private int? id;
 
-        public WindowAddNewArchive(IArchiveService service)
+        public WindowAddNewArchive()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
@@ -41,7 +37,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    ArchiveViewModel view = service.GetElement(id.Value);
+                    ArchiveViewModel view = APIClient.GetRequest<ArchiveViewModel>("api/Archive/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.ArchiveName;
@@ -73,7 +69,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new ArchiveBindingModel
+                    APIClient.PostRequest<ArchiveBindingModel, bool>("api/Archive/UpdElement", new ArchiveBindingModel
                     {
                         Id = id.Value,
                         ArchiveName = textBoxName.Text
@@ -81,7 +77,7 @@ namespace AbstractLawFirm___ViewWPF
                 }
                 else
                 {
-                    service.AddElement(new ArchiveBindingModel
+                    APIClient.PostRequest<ArchiveBindingModel, bool>("api/Archive/AddElement", new ArchiveBindingModel
                     {
                         ArchiveName = textBoxName.Text
                     });

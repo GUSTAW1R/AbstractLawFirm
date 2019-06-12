@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -23,16 +22,12 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowAddNewCustomer : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly ICustomerService service;
         private int? id;
 
-        public WindowAddNewCustomer(ICustomerService service)
+        public WindowAddNewCustomer()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void FormCustomer_Load()
@@ -41,7 +36,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    CustomerViewModel view = service.GetElement(id.Value);
+                    CustomerViewModel view = APIClient.GetRequest<CustomerViewModel>("api/Customer/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.CustomerFIO;
@@ -65,7 +60,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new CustomerBindingModel
+                    APIClient.PostRequest <CustomerBindingModel, bool>("api/Customer/UpdElement", new CustomerBindingModel
                     {
                         Id = id.Value,
                         CustomerFIO = textBoxName.Text
@@ -73,7 +68,7 @@ namespace AbstractLawFirm___ViewWPF
                 }
                 else
                 {
-                    service.AddElement(new CustomerBindingModel
+                    APIClient.PostRequest<CustomerBindingModel, bool>("api/Customer/AddElement", new CustomerBindingModel
                     {
                         CustomerFIO = textBoxName.Text
                     });

@@ -14,7 +14,6 @@ using System.Windows.Shapes;
 using AbstractLawFirm___ServiceDAL.BindingModel;
 using AbstractLawFirm___ServiceDAL.Interfaces;
 using AbstractLawFirm___ServiceDAL.ViewModel;
-using Unity;
 
 namespace AbstractLawFirm___ViewWPF
 {
@@ -23,16 +22,12 @@ namespace AbstractLawFirm___ViewWPF
     /// </summary>
     public partial class WindowAddNewBlank : Window
     {
-        [Dependency]
-        public new IUnityContainer Container { get; set; }
         public int Id { set { id = value; } }
-        private readonly IBlankService service;
         private int? id;
 
-        public WindowAddNewBlank(IBlankService service)
+        public WindowAddNewBlank()
         {
             InitializeComponent();
-            this.service = service;
         }
 
         private void ButtonSave_Click(object sender, RoutedEventArgs e)
@@ -46,7 +41,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 if (id.HasValue)
                 {
-                    service.UpdElement(new BlankBindingModel
+                    APIClient.PostRequest<BlankBindingModel, bool>("api/Blank/UpdElement", new BlankBindingModel
                     {
                         Id = id.Value,
                         BlankName = textBoxName.Text
@@ -54,7 +49,7 @@ namespace AbstractLawFirm___ViewWPF
                 }
                 else
                 {
-                    service.AddElement(new BlankBindingModel
+                    APIClient.PostRequest<BlankBindingModel, bool>("api/Blank/AddElement", new BlankBindingModel
                     {
                         BlankName = textBoxName.Text
                     });
@@ -81,7 +76,7 @@ namespace AbstractLawFirm___ViewWPF
             {
                 try
                 {
-                    BlankViewModel view = service.GetElement(id.Value);
+                    BlankViewModel view = APIClient.GetRequest<BlankViewModel>("api/Blank/Get/" + id.Value);
                     if (view != null)
                     {
                         textBoxName.Text = view.BlankName;

@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractLawFirm_-_ViewWPF",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractLawFirm_-_ServiceImplementDatabase", "AbstractLawFirm_-_ServiceImplementDatabase\AbstractLawFirm_-_ServiceImplementDatabase.csproj", "{AF07AC23-2AB4-4DAD-BC37-E5D3A5CBB5B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbstractLawFirm_-_RestApiWPF", "AbstractLawFirm_-_RestApiWPF\AbstractLawFirm_-_RestApiWPF.csproj", "{110E7EDA-230F-4E42-9663-941D76DF2831}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{AF07AC23-2AB4-4DAD-BC37-E5D3A5CBB5B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF07AC23-2AB4-4DAD-BC37-E5D3A5CBB5B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF07AC23-2AB4-4DAD-BC37-E5D3A5CBB5B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{110E7EDA-230F-4E42-9663-941D76DF2831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{110E7EDA-230F-4E42-9663-941D76DF2831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{110E7EDA-230F-4E42-9663-941D76DF2831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{110E7EDA-230F-4E42-9663-941D76DF2831}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
