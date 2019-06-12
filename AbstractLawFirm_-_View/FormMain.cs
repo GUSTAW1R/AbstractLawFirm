@@ -154,5 +154,11 @@ namespace AbstractLawFirm___View
             var form = new FormImplementerList();
             form.ShowDialog();
         }
+
+        private void письмаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form = new FormMailList();
+            form.ShowDialog();
+        }
     }
 }

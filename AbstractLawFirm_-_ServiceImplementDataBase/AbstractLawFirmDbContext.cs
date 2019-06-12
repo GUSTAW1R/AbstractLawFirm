@@ -26,5 +26,6 @@ namespace AbstractLawFirm___ServiceImplementDataBase
         public virtual DbSet<Archive> Archives { get; set; }
         public virtual DbSet<ArchiveComponent> ArchiveComponents { get; set; }
         public virtual DbSet<Implementer> Implementers { get; set; }
+        public virtual DbSet<MessageInfo> MessageInfos { get; set; }
     }
 }

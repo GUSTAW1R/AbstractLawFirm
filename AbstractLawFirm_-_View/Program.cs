@@ -4,10 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using AbstractLawFirm___ServiceDAL.Interfaces;
-using AbstractLawFirm___ServiceImplementDataBase;
-using AbstractLawFirm___ServiceImplementDataBase.Implementations;
-using AbstractLawFirm___ServiceImplementList.Implementations;
+
 
 
 namespace AbstractLawFirm___View
@@ -21,6 +18,7 @@ namespace AbstractLawFirm___View
         static void Main()
         {
             APIClient.Connect();
+            MailClient.Connect();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FormMain());
