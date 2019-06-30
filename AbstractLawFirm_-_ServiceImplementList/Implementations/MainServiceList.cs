@@ -46,7 +46,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 DateCreate = DateTime.Now,
                 Count = model.Count,
                 Sum = model.Sum,
-                Status = OrderStatus.Принят
+                Status = OrderStatus.Ожидает_подтверждения
             });
         }
         public void TakeOrderInWork(OrderBindingModel model)
@@ -56,9 +56,9 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Принят)
+            if (element.Status != OrderStatus.Ожидает_подтверждения)
             {
-                throw new Exception("Заказ не в статусе \"Принят\"");
+                throw new Exception("Заказ не в статусе \"Ожидает подтверждения\"");
             }
             // смотрим по количеству компонентов на складах
             var documentBlank = source.DocumentBlanks.Where(rec => rec.DocumentsId == element.DocumentsId);
@@ -99,7 +99,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
                 }
             }
             element.DateImplement = DateTime.Now;
-            element.Status = OrderStatus.Выполняется;
+            element.Status = OrderStatus.Ожидает_оплаты;
         }
         public void FinishOrder(OrderBindingModel model)
         {
@@ -108,11 +108,11 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Выполняется)
+            if (element.Status != OrderStatus.Ожидает_оплаты)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            element.Status = OrderStatus.Готов;
+            element.Status = OrderStatus.В_кредите;
         }
         public void PayOrder(OrderBindingModel model)
         {
@@ -121,7 +121,7 @@ namespace AbstractLawFirm___ServiceImplementList.Implementations
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Готов)
+            if (element.Status != OrderStatus.Ожидает_оплаты)
             {
                 throw new Exception("Заказ не в статусе \"Готов\"");
             }

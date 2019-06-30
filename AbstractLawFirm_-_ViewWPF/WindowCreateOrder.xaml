@@ -18,9 +18,9 @@
         <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="52" Margin="228,459,0,0" VerticalAlignment="Top" Width="140" Click="ButtonAdd_Click"/>
         <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="52" Margin="538,459,0,0" VerticalAlignment="Top" Width="140" Click="ButtonCancel_Click" Grid.ColumnSpan="2"/>
         <Label Content="Клиент" HorizontalAlignment="Left" Height="42" Margin="84,75,0,0" VerticalAlignment="Top" Width="107"/>
-        <Label Content="Документ" HorizontalAlignment="Left" Height="42" Margin="84,177,0,0" VerticalAlignment="Top" Width="107"/>
-        <Label Content="Количество" HorizontalAlignment="Left" Height="42" Margin="84,272,0,0" VerticalAlignment="Top" Width="107"/>
-        <Label Content="Сумма" HorizontalAlignment="Left" Height="42" Margin="84,368,0,0" VerticalAlignment="Top" Width="107"/>
+        <Label Content="Путешествие" HorizontalAlignment="Left" Height="42" Margin="84,177,0,0" VerticalAlignment="Top" Width="107"/>
+        <Label Content="Дни" HorizontalAlignment="Left" Height="42" Margin="84,272,0,0" VerticalAlignment="Top" Width="107"/>
+        <Label Content="Итого" HorizontalAlignment="Left" Height="42" Margin="84,368,0,0" VerticalAlignment="Top" Width="107"/>
 
     </Grid>
 </Window>

@@ -136,6 +136,9 @@
     <Compile Include="WindowDocumentsList.xaml.cs">
       <DependentUpon>WindowDocumentsList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowPayCredit.xaml.cs">
+      <DependentUpon>WindowPayCredit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowPutOnArchive.xaml.cs">
       <DependentUpon>WindowPutOnArchive.xaml</DependentUpon>
     </Compile>
@@ -192,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowDocumentsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowPayCredit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -11,8 +11,8 @@
         <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Height="38" Margin="236,207,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="356"/>
         <Button x:Name="buttonAdd" Content="Добавить" HorizontalAlignment="Left" Height="43" Margin="50,306,0,0" VerticalAlignment="Top" Width="180" Click="ButtonSave_Click"/>
         <Button x:Name="buttonCancel" Content="Отмена" HorizontalAlignment="Left" Height="43" Margin="412,306,0,0" VerticalAlignment="Top" Width="180" Click="ButtonCancel_Click_1"/>
-        <Label Content="Компонент Документа" HorizontalAlignment="Left" Height="32" Margin="73,96,0,0" VerticalAlignment="Top" Width="157"/>
-        <Label Content="Количество Документов" HorizontalAlignment="Left" Height="32" Margin="62,213,0,0" VerticalAlignment="Top" Width="157"/>
+        <Label Content="Наименование тура" HorizontalAlignment="Left" Height="32" Margin="73,96,0,0" VerticalAlignment="Top" Width="157"/>
+        <Label Content="Количество дней" HorizontalAlignment="Left" Height="32" Margin="62,213,0,0" VerticalAlignment="Top" Width="157"/>
 
     </Grid>
 </Window>

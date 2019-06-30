@@ -1,0 +1,14 @@
+﻿<Window x:Class="AbstractLawFirm___ViewWPF.WindowPayCredit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AbstractLawFirm___ViewWPF"
+        mc:Ignorable="d"
+        Title="WindowPayCredit" Height="229.937" Width="338.714">
+    <Grid>
+        <TextBox x:Name="textBoxCount" HorizontalAlignment="Left" Height="28" Margin="89,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="158"/>
+        <Button Content="Взять кредит" HorizontalAlignment="Left" Height="33" Margin="89,121,0,0" VerticalAlignment="Top" Width="158" Click="Button_Click"/>
+        <Label Content="На сколько дней" HorizontalAlignment="Left" Height="27" Margin="103,25,0,0" VerticalAlignment="Top" Width="103"/>
+    </Grid>
+</Window>

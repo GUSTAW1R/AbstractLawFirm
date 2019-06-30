@@ -42,7 +42,7 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
                 var paragraph = document.Paragraphs.Add(missing);
                 var range = paragraph.Range;
                 //задаем текст
-                range.Text = "Прайс изделий";
+                range.Text = "Прайс рекомендованных туров";
                 //задаем настройки шрифта
                 var font = range.Font;
                 font.Size = 16;
@@ -79,7 +79,7 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
                 table.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
                 paragraph = document.Paragraphs.Add(missing);
                 range = paragraph.Range;
-                range.Text = "Дата: " + DateTime.Now.ToLongDateString();
+                range.Text = "Дата формирования: " + DateTime.Now.ToLongDateString();
                 font = range.Font;
                 font.Size = 12;
                 font.Name = "Times New Roman";

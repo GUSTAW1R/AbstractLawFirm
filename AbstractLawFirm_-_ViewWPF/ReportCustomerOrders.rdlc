@@ -221,7 +221,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Название документа</Value>
+                                  <Value>Название тура</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -253,7 +253,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Количество</Value>
+                                  <Value>Дни</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -553,7 +553,7 @@
             <Top>2.98662cm</Top>
             <Left>1.90717cm</Left>
             <Height>1.2cm</Height>
-            <Width>17.05493cm</Width>
+            <Width>17.05492cm</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>

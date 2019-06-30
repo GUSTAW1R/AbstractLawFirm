@@ -60,7 +60,7 @@ namespace AbstractLawFirm___ViewWPF
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            LoadData();
+            //LoadData();
         }
 
         private void ButtonAddOrder_Click(object sender, RoutedEventArgs e)
@@ -193,6 +193,12 @@ namespace AbstractLawFirm___ViewWPF
         private void MenuItem_Click_3(object sender, RoutedEventArgs e)
         {
             var window = Container.Resolve<WindowCustomerOrder>();
+            window.ShowDialog();
+        }
+
+        private void ButtonTake_Click(object sender, RoutedEventArgs e)
+        {
+            var window = Container.Resolve<WindowPayCredit>();
             window.ShowDialog();
         }
     }

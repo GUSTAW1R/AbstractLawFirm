@@ -55,7 +55,7 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
                 DateCreate = DateTime.Now,
                 Count = model.Count,
                 Sum = model.Sum,
-                Status = OrderStatus.Принят
+                Status = OrderStatus.Ожидает_подтверждения
             });
             context.SaveChanges();
         }
@@ -71,9 +71,9 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
                     {
                         throw new Exception("Элемент не найден");
                     }
-                    if (element.Status != OrderStatus.Принят)
+                    if (element.Status != OrderStatus.Ожидает_подтверждения)
                     {
-                        throw new Exception("Заказ не в статусе \"Принят\"");
+                        throw new Exception("Заказ не в статусе \"Ожидает подтверждения\"");
                     }
                     var productComponents = context.DocumentBlanks.Include(rec => rec.Blank).Where(rec => rec.DocumentsId == element.DocumentsId);
                     // списываем
@@ -105,7 +105,7 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
                         }
                     }
                     element.DateImplement = DateTime.Now;
-                    element.Status = OrderStatus.Выполняется;
+                    element.Status = OrderStatus.Ожидает_оплаты;
                     context.SaveChanges();
                     transaction.Commit();
                 }
@@ -123,11 +123,11 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Выполняется)
+            if (element.Status != OrderStatus.Ожидает_оплаты)
             {
                 throw new Exception("Заказ не в статусе \"Выполняется\"");
             }
-            element.Status = OrderStatus.Готов;
+            element.Status = OrderStatus.В_кредите;
             context.SaveChanges();
         }
         public void PayOrder(OrderBindingModel model)
@@ -137,12 +137,16 @@ namespace AbstractLawFirm___ServiceImplementDatabase.Implements
             {
                 throw new Exception("Элемент не найден");
             }
-            if (element.Status != OrderStatus.Готов)
+            if (element.Status == OrderStatus.Ожидает_оплаты)
             {
-                throw new Exception("Заказ не в статусе \"Готов\"");
+                element.Status = OrderStatus.Оплачен;
+                context.SaveChanges();
             }
-            element.Status = OrderStatus.Оплачен;
-            context.SaveChanges();
+            if (element.Status == OrderStatus.В_кредите)
+            {
+                element.Status = OrderStatus.Оплачен;
+                context.SaveChanges();
+            }
         }
         public void PutComponentsOnArchive(ArchiveComponentBindingModel model)
         {
